@@ -9,11 +9,21 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    mmcommon.cpp
 
-HEADERS +=
+HEADERS += \
+    mmcommon.h
 
 FORMS +=
+
+INCLUDEPATH += src
+INCLUDEPATH += src/MMUiModule
+INCLUDEPATH += src/MMUiModule/MMCommonUI
+INCLUDEPATH += src/MMNetworkModule
+INCLUDEPATH += src/MMGlobalModule
+INCLUDEPATH += src/MMDataModule
+INCLUDEPATH += src/MMGlobalModule/MMSystemGlobal
 
 include(src/MMUiModule/MMUiModule.pri)
 include(src/MMNetworkModule/MMNetworkModule.pri)
@@ -36,3 +46,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES +=
+
+RESOURCES += \
+    resource/resource.qrc

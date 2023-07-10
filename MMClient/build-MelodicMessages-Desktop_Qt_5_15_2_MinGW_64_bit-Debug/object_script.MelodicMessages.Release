@@ -1,0 +1,12 @@
+release/main.o
+release/mmcommon.o
+release/mmaccountlogin.o
+release/mmlogindialog.o
+release/mmpushbutton.o
+release/mmbasenetwork.o
+release/mmsystemglobal.o
+release/qrc_resource.o
+release/moc_mmaccountlogin.o
+release/moc_mmlogindialog.o
+release/moc_mmbasenetwork.o
+release/moc_mmsystemglobal.o

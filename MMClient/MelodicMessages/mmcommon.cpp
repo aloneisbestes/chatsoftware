@@ -3,9 +3,9 @@
 #include <QWidget>
 
 char __close_icon_path[3][128] = {
-    ":/ Global/close.png",
-    ":/ Global/close_hover.png",
-    ":/ Global/close_pressed.png"
+    ":/Global/close.png",
+    ":/Global/close_hover.png",
+    ":/Global/close_pressed.png"
 };
 
 void setWindowShadow(QWidget *parent, QWidget *w, QColor color)

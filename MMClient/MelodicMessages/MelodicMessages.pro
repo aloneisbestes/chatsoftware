@@ -20,6 +20,7 @@ FORMS +=
 INCLUDEPATH += src
 INCLUDEPATH += src/MMUiModule
 INCLUDEPATH += src/MMUiModule/MMCommonUI
+INCLUDEPATH += src/MMUiModule/MMLoginUI/
 INCLUDEPATH += src/MMNetworkModule
 INCLUDEPATH += src/MMGlobalModule
 INCLUDEPATH += src/MMDataModule

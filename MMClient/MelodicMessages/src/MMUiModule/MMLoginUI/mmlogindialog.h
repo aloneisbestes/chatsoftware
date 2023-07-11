@@ -11,7 +11,6 @@ class MMLoginDialog;
 class MMLoginDialog : public QDialog
 {
     Q_OBJECT
-
 public:
     explicit MMLoginDialog(QWidget *parent = nullptr);
     ~MMLoginDialog();

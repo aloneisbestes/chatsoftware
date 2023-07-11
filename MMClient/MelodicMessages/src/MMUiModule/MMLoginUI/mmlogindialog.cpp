@@ -54,8 +54,11 @@ void MMLoginDialog::initSubassembly()
     double zoomWidth=MMSystemGlobal::instance()->m_dZoomWidth;
     double zoomHeight=MMSystemGlobal::instance()->m_dZoomHeight;
 
+    Q_UNUSED(zoomHeight);
+
     // 关闭按钮
     width=18*zoomWidth;
+     ui->btn_close->setIcon(QIcon(__close_icon_path[MM_PushButtonState::MMPushButtonState_Normal]));
     ui->btn_close->setBOriginal(false);
     ui->btn_close->setIconSize(QSize(width,width));
     ui->btn_close->setIconNormal(QIcon(__close_icon_path[MM_PushButtonState::MMPushButtonState_Normal]));

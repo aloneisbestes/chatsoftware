@@ -1,0 +1,12 @@
+debug/main.o
+debug/mmcommon.o
+debug/mmaccountlogin.o
+debug/mmlogindialog.o
+debug/mmpushbutton.o
+debug/mmbasenetwork.o
+debug/mmsystemglobal.o
+debug/qrc_resource.o
+debug/moc_mmaccountlogin.o
+debug/moc_mmlogindialog.o
+debug/moc_mmbasenetwork.o
+debug/moc_mmsystemglobal.o

@@ -1,7 +1,10 @@
 <RCC>
     <qresource prefix="/">
-        <file> Global/close.png</file>
-        <file> Global/close_hover.png</file>
-        <file> Global/close_pressed.png</file>
+        <file>Global/close.png</file>
+        <file>Global/close_hover.png</file>
+        <file>Global/close_pressed.png</file>
+        <file>Global/wechat_icon.png</file>
+        <file>Login/login_account_icon.png</file>
+        <file>Login/login_password_icon.png</file>
     </qresource>
 </RCC>

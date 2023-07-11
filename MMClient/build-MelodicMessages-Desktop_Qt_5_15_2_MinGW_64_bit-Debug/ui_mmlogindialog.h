@@ -45,23 +45,31 @@ public:
         if (MMLoginDialog->objectName().isEmpty())
             MMLoginDialog->setObjectName(QString::fromUtf8("MMLoginDialog"));
         MMLoginDialog->resize(307, 382);
+        MMLoginDialog->setStyleSheet(QString::fromUtf8("QDialog#MMLoginDialog\n"
+"{\n"
+"	background-color: #F2F5FC;\n"
+"}|"));
         verticalLayout = new QVBoxLayout(MMLoginDialog);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         widget = new QWidget(MMLoginDialog);
         widget->setObjectName(QString::fromUtf8("widget"));
         widget->setStyleSheet(QString::fromUtf8("QWidget#widget \n"
 "{\n"
-"	background-color: white;\n"
+"	background-color: #F2F5FC;\n"
 "	border-radius: 10px;\n"
 "}"));
         gridLayout = new QGridLayout(widget);
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
+        gridLayout->setContentsMargins(9, 9, 9, 9);
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         stackedWidget = new QStackedWidget(widget);
         stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
+        stackedWidget->setStyleSheet(QString::fromUtf8("QStackedWidget#stackedWidget\n"
+"{\n"
+"	background-color: #F2F5FC;\n"
+"}"));
         wdg_account_login = new MMAccountLogin();
         wdg_account_login->setObjectName(QString::fromUtf8("wdg_account_login"));
         stackedWidget->addWidget(wdg_account_login);

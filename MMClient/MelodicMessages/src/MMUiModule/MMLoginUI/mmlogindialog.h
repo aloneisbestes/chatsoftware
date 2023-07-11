@@ -15,6 +15,9 @@ public:
     explicit MMLoginDialog(QWidget *parent = nullptr);
     ~MMLoginDialog();
 
+public slots:
+    void slotHandlerLogin(QString account, QString passwd);
+
 private:
     // 初始化登录界面
     void initMMLoginDialogUI();

@@ -15,6 +15,12 @@ public:
     explicit MMAccountLogin(QWidget *parent = nullptr);
     ~MMAccountLogin();
 
+signals:
+    void signalHandlerLogin(QString account, QString passwd);
+
+protected slots:
+    void slotHandlerLogin();
+
 private:
     // 初始化登录界面
     void initMMAccountLoginUI();

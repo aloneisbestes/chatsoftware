@@ -25,6 +25,7 @@ class Ui_MMAccountLogin
 {
 public:
     QGridLayout *gridLayout;
+    QVBoxLayout *verticalLayout_7;
     QWidget *widget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
@@ -45,7 +46,8 @@ public:
     QWidget *widget_5;
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton;
+    QPushButton *btn_login;
+    QHBoxLayout *horizontalLayout_5;
     QWidget *widget_3;
 
     void setupUi(QWidget *MMAccountLogin)
@@ -53,10 +55,17 @@ public:
         if (MMAccountLogin->objectName().isEmpty())
             MMAccountLogin->setObjectName(QString::fromUtf8("MMAccountLogin"));
         MMAccountLogin->resize(256, 326);
+        MMAccountLogin->setStyleSheet(QString::fromUtf8("QWidget#MMAccountLogin\n"
+"{\n"
+"	background-color: #F2F5FC;\n"
+"}"));
         gridLayout = new QGridLayout(MMAccountLogin);
         gridLayout->setSpacing(0);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(-1, -1, -1, 0);
         widget = new QWidget(MMAccountLogin);
         widget->setObjectName(QString::fromUtf8("widget"));
         verticalLayout = new QVBoxLayout(widget);
@@ -73,7 +82,7 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
 
-        gridLayout->addWidget(widget, 0, 0, 1, 1);
+        verticalLayout_7->addWidget(widget);
 
         widget_2 = new QWidget(MMAccountLogin);
         widget_2->setObjectName(QString::fromUtf8("widget_2"));
@@ -84,6 +93,11 @@ public:
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         widget_4 = new QWidget(widget_2);
         widget_4->setObjectName(QString::fromUtf8("widget_4"));
+        widget_4->setStyleSheet(QString::fromUtf8("QWidget#widget_4\n"
+"{\n"
+"	background-color: #FFFFFF;\n"
+"	border-radius: 8px;\n"
+"}"));
         verticalLayout_5 = new QVBoxLayout(widget_4);
         verticalLayout_5->setSpacing(0);
         verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
@@ -98,6 +112,10 @@ public:
 
         edit_account = new QLineEdit(widget_4);
         edit_account->setObjectName(QString::fromUtf8("edit_account"));
+        edit_account->setStyleSheet(QString::fromUtf8("QLineEdit#edit_account\n"
+"{\n"
+"	border: none;\n"
+"}"));
 
         horizontalLayout_4->addWidget(edit_account);
 
@@ -109,6 +127,11 @@ public:
 
         widget_6 = new QWidget(widget_2);
         widget_6->setObjectName(QString::fromUtf8("widget_6"));
+        widget_6->setStyleSheet(QString::fromUtf8("QWidget#widget_6\n"
+"{\n"
+"	background-color: #FFFFFF;\n"
+"	border-radius: 8px;\n"
+"}"));
         verticalLayout_6 = new QVBoxLayout(widget_6);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
@@ -122,6 +145,11 @@ public:
 
         edit_password = new QLineEdit(widget_6);
         edit_password->setObjectName(QString::fromUtf8("edit_password"));
+        edit_password->setStyleSheet(QString::fromUtf8("QLineEdit#edit_password\n"
+"{\n"
+"	border: none;\n"
+"}"));
+        edit_password->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_3->addWidget(edit_password);
 
@@ -137,11 +165,29 @@ public:
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        pushButton = new QPushButton(widget_5);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        btn_login = new QPushButton(widget_5);
+        btn_login->setObjectName(QString::fromUtf8("btn_login"));
+        btn_login->setStyleSheet(QString::fromUtf8("QPushButton\n"
+"{\n"
+"	border: none;\n"
+"	color: #FFFFFF;\n"
+"	background-color: #4FE8FF;\n"
+"	border-radius: 8px;\n"
+"}\n"
+"\n"
+"QPushButton::hover\n"
+"{\n"
+"	background-color: #96EFFF;\n"
+"}\n"
+"\n"
+"QPushButton::pressed\n"
+"{\n"
+"	background-color: #949698;\n"
+"}"));
 
-        horizontalLayout_2->addWidget(pushButton);
+        horizontalLayout_2->addWidget(btn_login);
 
 
         verticalLayout_4->addLayout(horizontalLayout_2);
@@ -149,19 +195,27 @@ public:
 
         verticalLayout_2->addWidget(widget_5);
 
-        widget_3 = new QWidget(widget_2);
-        widget_3->setObjectName(QString::fromUtf8("widget_3"));
-
-        verticalLayout_2->addWidget(widget_3);
-
 
         verticalLayout_3->addLayout(verticalLayout_2);
 
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        widget_3 = new QWidget(widget_2);
+        widget_3->setObjectName(QString::fromUtf8("widget_3"));
 
-        gridLayout->addWidget(widget_2, 1, 0, 1, 1);
+        horizontalLayout_5->addWidget(widget_3);
 
-        gridLayout->setRowStretch(0, 2);
-        gridLayout->setRowStretch(1, 5);
+
+        verticalLayout_3->addLayout(horizontalLayout_5);
+
+        verticalLayout_3->setStretch(0, 3);
+        verticalLayout_3->setStretch(1, 1);
+
+        verticalLayout_7->addWidget(widget_2);
+
+
+        gridLayout->addLayout(verticalLayout_7, 0, 0, 1, 1);
+
 
         retranslateUi(MMAccountLogin);
 
@@ -173,8 +227,8 @@ public:
         MMAccountLogin->setWindowTitle(QCoreApplication::translate("MMAccountLogin", "Form", nullptr));
         label_mm_icon->setText(QString());
         label_account_icon->setText(QString());
-        label_password_icon->setText(QCoreApplication::translate("MMAccountLogin", "TextLabel", nullptr));
-        pushButton->setText(QCoreApplication::translate("MMAccountLogin", "PushButton", nullptr));
+        label_password_icon->setText(QString());
+        btn_login->setText(QCoreApplication::translate("MMAccountLogin", "\347\231\273  \345\275\225", nullptr));
     } // retranslateUi
 
 };

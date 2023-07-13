@@ -239,7 +239,11 @@ Makefile: ../MelodicMessages/MelodicMessages.pro D:/Qt/Qt5.15.2/5.15.2/mingw81_6
 		../MelodicMessages/src/MMNetworkModule/MMNetworkModule.pri \
 		../MelodicMessages/src/MMGlobalModule/MMSystemGlobal/MMSystemGloabl.pri \
 		../MelodicMessages/src/MMGlobalModule/MMGlobalModule.pri \
+		../MelodicMessages/src/MMDataModule/MMDataBase/MMDataBase.pri \
+		../MelodicMessages/src/MMDataModule/MMLoginData/MMLoginData.pri \
 		../MelodicMessages/src/MMDataModule/MMDataModule.pri \
+		../MelodicMessages/src/MMFactory/MMDataFactory/MMDataFactory.pri \
+		../MelodicMessages/src/MMFactory/MMFactory.pri \
 		D:/Qt/Qt5.15.2/5.15.2/mingw81_64/mkspecs/features/resolve_config.prf \
 		D:/Qt/Qt5.15.2/5.15.2/mingw81_64/mkspecs/features/exclusive_builds_post.prf \
 		D:/Qt/Qt5.15.2/5.15.2/mingw81_64/mkspecs/features/default_post.prf \
@@ -437,7 +441,11 @@ D:/Qt/Qt5.15.2/5.15.2/mingw81_64/mkspecs/features/win32/default_pre.prf:
 ../MelodicMessages/src/MMNetworkModule/MMNetworkModule.pri:
 ../MelodicMessages/src/MMGlobalModule/MMSystemGlobal/MMSystemGloabl.pri:
 ../MelodicMessages/src/MMGlobalModule/MMGlobalModule.pri:
+../MelodicMessages/src/MMDataModule/MMDataBase/MMDataBase.pri:
+../MelodicMessages/src/MMDataModule/MMLoginData/MMLoginData.pri:
 ../MelodicMessages/src/MMDataModule/MMDataModule.pri:
+../MelodicMessages/src/MMFactory/MMDataFactory/MMDataFactory.pri:
+../MelodicMessages/src/MMFactory/MMFactory.pri:
 D:/Qt/Qt5.15.2/5.15.2/mingw81_64/mkspecs/features/resolve_config.prf:
 D:/Qt/Qt5.15.2/5.15.2/mingw81_64/mkspecs/features/exclusive_builds_post.prf:
 D:/Qt/Qt5.15.2/5.15.2/mingw81_64/mkspecs/features/default_post.prf:

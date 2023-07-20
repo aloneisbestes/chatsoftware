@@ -13,28 +13,34 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#MMLoginDialog
+{
+	background-color: #F2F5FC;
+}|</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QWidget" name="widget" native="true">
      <property name="styleSheet">
       <string notr="true">QWidget#widget 
 {
-	background-color: white;
+	background-color: #F2F5FC;
 	border-radius: 10px;
 }</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <property name="leftMargin">
-       <number>0</number>
+       <number>9</number>
       </property>
       <property name="topMargin">
-       <number>0</number>
+       <number>9</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>9</number>
       </property>
       <property name="bottomMargin">
-       <number>0</number>
+       <number>9</number>
       </property>
       <property name="spacing">
        <number>6</number>
@@ -43,6 +49,12 @@
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
+          <property name="styleSheet">
+           <string notr="true">QStackedWidget#stackedWidget
+{
+	background-color: #F2F5FC;
+}</string>
+          </property>
           <property name="currentIndex">
            <number>0</number>
           </property>

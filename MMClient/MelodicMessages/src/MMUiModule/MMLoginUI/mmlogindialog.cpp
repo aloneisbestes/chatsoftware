@@ -37,6 +37,11 @@ MMLoginDialog::~MMLoginDialog()
     delete ui;
 }
 
+void MMLoginDialog::slotHandlerLogin(QString account, QString passwd)
+{
+    qDebug() << "登录处理";
+}
+
 void MMLoginDialog::initMMLoginDialogUI()
 {
     // 初始化组件
@@ -48,13 +53,17 @@ void MMLoginDialog::initMMLoginDialogUI()
 
 void MMLoginDialog::initSubassembly()
 {
-    int width;
+    int width, height;
     int rightMargin;
     int topMargin;
     double zoomWidth=MMSystemGlobal::instance()->m_dZoomWidth;
     double zoomHeight=MMSystemGlobal::instance()->m_dZoomHeight;
 
     Q_UNUSED(zoomHeight);
+    /************* 设置窗口本身大小 *************/
+    width=310*zoomHeight;
+    height=380*zoomHeight;
+    this->setFixedSize(QSize(width, height));
 
     // 关闭按钮
     width=18*zoomWidth;
@@ -86,6 +95,8 @@ void MMLoginDialog::initEventHandle()
     connect(ui->btn_close, &QPushButton::clicked, this, [&](){
         this->reject();
     });
+
+    connect(ui->wdg_account_login, &MMAccountLogin::signalHandlerLogin, this, &MMLoginDialog::slotHandlerLogin);
 }
 
 bool MMLoginDialog::eventFilter(QObject* watched,QEvent* event)

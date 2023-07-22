@@ -9,6 +9,7 @@ typedef enum tagMMEnumErrorType {
     MMEnumErrorType_CreateListenError,                  // 创建监听套接字失败
     MMEnumErrorType_CreateEpollError,                   // 创建epollfd失败
     MMEnumErrorType_AddEpollfdError,                    // 添加到epollfd事件中失败
+    MMEnumErrorType_AccpetGetError,                     // 获取队列中的套接字失败
 }MM_EnumError;
 
 // 错误码对应的错误提示

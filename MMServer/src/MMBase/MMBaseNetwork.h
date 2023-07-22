@@ -4,6 +4,8 @@
 #include <string>
 #include <memory>
 
+#include "MMBaseData.h"
+
 class MMBaseNetwork {
 public:
 #ifdef __linux__
@@ -20,8 +22,8 @@ public:
     void setIp(const std::string &ip) { m_ip=ip; }
     const std::string &getIp() const { return m_ip; }
 
-    virtual int recvData()=0;
-    virtual int sendData()=0;
+    virtual std::shared_ptr<MMBaseData> recvData()=0;
+    virtual bool sendData(std::shared_ptr<MMBaseData> data)=0;
 
 protected:
     virtual int recvData(char *data, int len, int flag=0);

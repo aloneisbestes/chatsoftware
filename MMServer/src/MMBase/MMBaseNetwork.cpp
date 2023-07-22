@@ -14,7 +14,6 @@ MMBaseNetwork::MMBaseNetwork(int sockfd, int port, const std::string &ip)
 
 
 MMBaseNetwork::~MMBaseNetwork() {
-
 }
 
 int MMBaseNetwork::recvData(char *data, int len, int flags) {

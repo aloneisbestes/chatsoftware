@@ -1,8 +1,11 @@
 #ifndef __MM_NETWORK_SERVER_H__
 #define __MM_NETWORK_SERVER_H__
 
+#include <map>
+
 #include "../MMBase/MMBaseNetwork.h"
 #include "../../include/MMCommon.h"
+#include "MMNetworkClient.h"
 
 class MMNetworkServer : public MMBaseNetwork {
 public:
@@ -12,14 +15,15 @@ public:
     virtual void loop();
 
 private:
-    virtual int recvData() override;
-    virtual int sendData() override;
+    virtual std::shared_ptr<MMBaseData> recvData()override;
+    virtual bool sendData(std::shared_ptr<MMBaseData> data)override;
 
 private:
     std::shared_ptr<char*> m_buffer;
     int m_len;
     int m_epollfd;  // epollfd
     int m_epollMode;    // epoll模式
+    std::map<int, std::shared_ptr<MMNetworkClient>> m_clientMap;
 };
 
 

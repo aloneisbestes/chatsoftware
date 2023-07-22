@@ -10,7 +10,7 @@ SET(MMBASE_PATH ${PROJECT_SOURCE_DIR}/src/MMBase)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/src/MMBase)
 include_directories(${PROJECT_SOURCE_DIR}/src/MMNetwork)
-set(SRC_LIST ${MMNETWORK_PATH}/MMNetworkServer.cpp ${MMBASE_PATH}/MMBaseNetwork.cpp)
+set(SRC_LIST ${MMNETWORK_PATH}/MMNetworkServer.cpp ${MMBASE_PATH}/MMBaseNetwork.cpp  ${MMNETWORK_PATH}/MMNetworkClient.cpp)
 
 # 创建库文件
 add_library(MMNetwork SHARED ${SRC_LIST})

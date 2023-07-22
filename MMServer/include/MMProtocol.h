@@ -16,6 +16,7 @@ typedef unsigned short      MMUInt16;
 /********************* 协议头 Start *********************/
 typedef struct _st_MMHeader
 {
+    MMInt32         check;          // 校验码
     MMInt32         mainCmd;        // 主命令码
     MMInt32         subCmd;         // 子命令码
     MMInt8          messageType;    // 消息类型，0: 消息    1: 心跳

@@ -24,3 +24,8 @@ void MMUIManager::disInstance()
         delete MMUIManager::__ins;
     }
 }
+
+MMUIManager::~MMUIManager()
+{
+
+}

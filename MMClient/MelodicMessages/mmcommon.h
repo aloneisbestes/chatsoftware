@@ -14,12 +14,33 @@ typedef enum tagMMPushButtonState {
 }MM_PushButtonState;
 
 
+typedef enum tagMMTcpConnectMode {
+    MMTcpConnectMode_Create,    // 创建连接
+    MMTcpConnectMode_Change,    // 切换连接
+}MM_ENTcpConnectMode;
+
+typedef enum tagMMTcpConnectError {
+    MMTcpConnectError_Success=0,        // 用于表示连接成功
+    MMTcpConnectError_ConnectFialed,    // 连接失败
+    MMTcpConnectError_Accident,         // 意外断开连接
+    MMTcpConnectError_Initiative,       // 主动断开连接
+}MM_ENTcpConnectError;
 /************************ 枚举定义 End ************************/
+
+
+
+/************************ 宏定义 Start ************************/
+#define MM_HEADER_CHECK 112233
+/************************ 宏定义 end ************************/
+
+
 
 /************************ 外部链接变量 Start ************************/
 // close按钮图标的三种状态
 extern char __close_icon_path[3][128];
 /************************ 外部链接变量 End ************************/
+
+
 
 
 /************************ 公共函数 Start ************************/

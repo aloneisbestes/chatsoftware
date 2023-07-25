@@ -10,15 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    mmclient.cpp \
     mmcommon.cpp \
     mmuimanager.cpp
 
 HEADERS += \
     MMProtocol.h \
+    mmclient.h \
     mmcommon.h \
     mmuimanager.h
 
-FORMS +=
+FORMS += \
+    mmclient.ui
 
 INCLUDEPATH += src
 INCLUDEPATH += src/MMUiModule

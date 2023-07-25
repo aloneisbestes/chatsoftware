@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mmcommon.cpp
+    mmcommon.cpp \
+    mmuimanager.cpp
 
 HEADERS += \
     MMProtocol.h \
-    mmcommon.h
+    mmcommon.h \
+    mmuimanager.h
 
 FORMS +=
 

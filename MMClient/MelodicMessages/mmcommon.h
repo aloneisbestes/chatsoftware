@@ -28,7 +28,7 @@ void setWindowShadow(QWidget *parent, QWidget *w, QColor color=QColor(0,0,0,150)
 
 // 设置MM协议头
 void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8 messageFormat=MessageFormat_Json,
-                 MMUInt32 cmdState=0, MMUInt8 messageType=MessageType_Msg, MMUInt32 dataLen=0);
+                 MMUInt32 cmdState=0, MMUInt8 messageType=MessageType_Msg, MMUInt32 dataLen=0, MMUInt32 check=MM_HEADER_CHECK);
 /************************ 公共函数 End ************************/
 
 

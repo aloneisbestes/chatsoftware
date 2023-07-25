@@ -19,7 +19,7 @@ void setWindowShadow(QWidget *parent, QWidget *w, QColor color)
 }
 
 void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8 messageFormat,
-                 MMUInt32 cmdState, MMUInt8 messageType, MMUInt32 dataLen)
+                 MMUInt32 cmdState, MMUInt8 messageType, MMUInt32 dataLen, MMUInt32 check)
 {
     header.mainCmd=mainCmd;
     header.subCmd=subCmd;
@@ -27,4 +27,5 @@ void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8
     header.cmdState=cmdState;
     header.messageType=messageType;
     header.dataLen=dataLen;
+    header.check=check;
 }

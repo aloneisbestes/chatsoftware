@@ -19,12 +19,12 @@ MMBaseNetwork::~MMBaseNetwork()
 
 void MMBaseNetwork::slotSendData(QSharedPointer<MMDataBase> data)
 {
-
+    sendData(data);
 }
 
 void MMBaseNetwork::slotRecvData()
 {
-
+    recvData();
 }
 
 void MMBaseNetwork::slotConnect(const QString &ip, int port, MM_ENTcpConnectMode connectMode)
@@ -50,7 +50,6 @@ void MMBaseNetwork::slotConnect(const QString &ip, int port, MM_ENTcpConnectMode
         m_baseSocket->close();
     }
     m_baseSocket->connectToHost(m_ip, m_port);
-
 
     if (m_baseSocket->waitForConnected(3000)) {
         // 连接成功

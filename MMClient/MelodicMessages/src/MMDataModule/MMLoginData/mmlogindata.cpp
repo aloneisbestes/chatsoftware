@@ -1,7 +1,9 @@
 #include "mmlogindata.h"
 
-MMLoginData::MMLoginData()
-    : MMDataBase()
+UserInfoData *UserInfoData::__ins=nullptr;
+
+MMLoginData::MMLoginData(MMUInt32 mainCmd, MMUInt32 subCmd)
+    : MMDataJsonBase(mainCmd, subCmd)
 {
 
 }
@@ -9,26 +11,6 @@ MMLoginData::MMLoginData()
 MMLoginData::~MMLoginData()
 {
 
-}
-
-QString MMLoginData::account() const
-{
-    return m_account;
-}
-
-void MMLoginData::setAccount(const QString &newAccount)
-{
-    m_account = newAccount;
-}
-
-QString MMLoginData::password() const
-{
-    return m_password;
-}
-
-void MMLoginData::setPassword(const QString &newPassword)
-{
-    m_password = newPassword;
 }
 
 void MMLoginData::parseData()
@@ -41,12 +23,66 @@ void MMLoginData::createData()
 
 }
 
-bool MMLoginData::isQuit() const
+UserInfoData *MMLoginData::userInfoData() const
 {
-    return m_isQuit;
+    return m_userInfoData;
 }
 
-void MMLoginData::setIsQuit(bool newIsQuit)
+void MMLoginData::setUserInfoData(UserInfoData *newUserInfoData)
 {
-    m_isQuit = newIsQuit;
+    m_userInfoData = newUserInfoData;
+}
+
+UserInfoData::UserInfoData()
+{
+
+}
+
+UserInfoData::~UserInfoData()
+{
+
+}
+
+const QString &UserInfoData::account() const
+{
+    return m_account;
+}
+
+void UserInfoData::setAccount(const QString &newAccount)
+{
+    m_account = newAccount;
+}
+
+const QString &UserInfoData::password() const
+{
+    return m_password;
+}
+
+void UserInfoData::setPassword(const QString &newPassword)
+{
+    m_password = newPassword;
+}
+
+bool UserInfoData::isOnline() const
+{
+    return m_isOnline;
+}
+
+void UserInfoData::setIsOnline(bool newIsOnline)
+{
+    m_isOnline = newIsOnline;
+}
+
+UserInfoData *UserInfoData::instance()
+{
+    if (UserInfoData::__ins == nullptr) {
+        UserInfoData::__ins=new UserInfoData;
+    }
+    return UserInfoData::__ins;
+}
+
+void UserInfoData::disInstance()
+{
+    if (UserInfoData::__ins)
+        delete UserInfoData::__ins;
 }

@@ -1,29 +1,53 @@
 #ifndef MMLOGINDATA_H
 #define MMLOGINDATA_H
 
-#include "MMDataBase.h"
+#include "MMDataJsonBase.h"
 
-class MMLoginData : public MMDataBase
+class UserInfoData
 {
 public:
-    MMLoginData();
-    ~MMLoginData();
+    UserInfoData();
+    ~UserInfoData();
 
-    QString account() const;
+    const QString & account() const;
     void setAccount(const QString &newAccount);
 
-    QString password() const;
+    const QString &password() const;
     void setPassword(const QString &newPassword);
 
-    virtual void parseData()override;
-    virtual void createData()override;
-    bool isQuit() const;
-    void setIsQuit(bool newIsQuit);
+    bool isOnline() const;
+    void setIsOnline(bool newIsOnline);
+
+public:
+    static UserInfoData *instance();
+    static void disInstance();
+
+private:
+    static UserInfoData *__ins;
 
 private:
     QString m_account;
     QString m_password;
-    bool m_isQuit;
+    bool m_isOnline;
+};
+
+class MMLoginData : public MMDataJsonBase
+{
+public:
+    MMLoginData(MMUInt32 mainCmd=MMMainCmd_None, MMUInt32 subCmd=MMMainCmd_None);
+    ~MMLoginData();
+
+
+
+    UserInfoData *userInfoData() const;
+    void setUserInfoData(UserInfoData *newUserInfoData);
+
+protected:
+    virtual void parseData()override;
+    virtual void createData()override;
+
+private:
+    UserInfoData *m_userInfoData;
 };
 
 

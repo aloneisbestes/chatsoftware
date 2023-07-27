@@ -1,34 +1,16 @@
 #include "mmdatabase.h"
-#include <string>
+#include <cstring>
 
-MMDataBase::MMDataBase()
+MMDataBase::MMDataBase(MMUInt32 mainCmd, MMUInt32 subCmd)
 {
-    memset(&m_header, 0, MMSTHEADER_SIZE);
+    std::memset(&m_header, 0, MMSTHEADER_SIZE);
+    m_header.mainCmd=mainCmd;
+    m_header.subCmd=subCmd;
 }
 
 MMDataBase::~MMDataBase()
 {
 
-}
-
-QJsonObject MMDataBase::jsonRoot() const
-{
-    return m_jsonRoot;
-}
-
-void MMDataBase::setJsonRoot(const QJsonObject &newJsonRoot)
-{
-    m_jsonRoot = newJsonRoot;
-}
-
-QString MMDataBase::jsonString() const
-{
-    return m_jsonString;
-}
-
-void MMDataBase::setJsonString(const QString &newJsonString)
-{
-    m_jsonString = newJsonString;
 }
 
 MM_STHeader &MMDataBase::header()

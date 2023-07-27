@@ -34,6 +34,10 @@ INCLUDEPATH += src/MMGlobalModule/MMSystemGlobal
 INCLUDEPATH += src/MMDataModule/MMDataBase
 INCLUDEPATH += src/MMDataModule/MMLoginData
 INCLUDEPATH += src/MMFactoryModule
+INCLUDEPATH += src/MMGlobalModule
+INCLUDEPATH += src/MMGlobalModule/MMDistroySystem
+INCLUDEPATH += src/MMGlobalModule/MMInstance
+
 
 include(src/MMUiModule/MMUiModule.pri)
 include(src/MMNetworkModule/MMNetworkModule.pri)

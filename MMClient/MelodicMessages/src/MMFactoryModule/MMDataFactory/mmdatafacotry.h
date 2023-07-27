@@ -9,7 +9,7 @@ class MMDataFacotry
 public:
     /* 登录 */
     // 创建登录请求
-    static QSharedPointer<MMLoginData> createReqMMLoingData(const MMLoginData &loginData);
+    // static QSharedPointer<MMLoginData> createReqMMLoingData(const MMLoginData &loginData);
 
 private:
     static QSharedPointer<MMDataBase> createRequest(MMUInt32 mainCmd, MMUInt32 subCmd);

@@ -4,4 +4,4 @@ HEADERS += \
     $$PWD/include/MMBaseData.h\
 
 SOURCES += \
-
+    $$PWD/src/MMBaseDataJson.cpp

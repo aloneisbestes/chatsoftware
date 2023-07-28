@@ -19,9 +19,9 @@ public:
     const MM_STHeader &getMMHeader() const { return m_header; }
 
 protected:
-    // 创建json str
+    // 创建数据
     virtual void createData()=0;
-    // 解析json str
+    // 解析数据
     virtual void parseData()=0;
 
 private:

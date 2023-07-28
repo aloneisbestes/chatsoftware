@@ -1,5 +1,4 @@
 #include "mmdistroysystem.h"
-#include "mmlogindata.h"
 #include "mmdatamanager.h"
 #include "mmmessagerelay.h"
 
@@ -20,7 +19,6 @@ MMDistroySystem *MMDistroySystem::instance()
 
 void MMDistroySystem::disAllInstance()
 {
-    UserInfoData::disInstance();
     MMDataManager::disInstance();
     MMMessageRelay::disInstance();
 }

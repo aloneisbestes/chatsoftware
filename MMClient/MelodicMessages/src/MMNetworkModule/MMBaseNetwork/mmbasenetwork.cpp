@@ -17,7 +17,7 @@ MMBaseNetwork::~MMBaseNetwork()
     if (m_sendHeartBeatTimer) m_sendHeartBeatTimer->deleteLater();
 }
 
-void MMBaseNetwork::slotSendData(QSharedPointer<MMDataBase> data)
+void MMBaseNetwork::slotSendData(QSharedPointer<MMBaseData> data)
 {
     sendData(data);
 }

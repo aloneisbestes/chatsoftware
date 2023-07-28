@@ -2,6 +2,7 @@
 #define __MM_BASEDATA_H__
 
 #include <cstring>
+#include "MMProtocol.h"
 
 class MMBaseData {
 public:

@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "MMDataBase.h"
+#include "MMBaseData.h"
 #include "mmcommon.h"
 
 class QTcpSocket;
@@ -17,7 +17,7 @@ public:
     ~MMBaseNetwork();
 
 public slots:
-    void slotSendData(QSharedPointer<MMDataBase> data);
+    void slotSendData(QSharedPointer<MMBaseData> data);
     void slotRecvData();
     void slotConnect(const QString &ip, int port, MM_ENTcpConnectMode connectMode=MM_ENTcpConnectMode::MMTcpConnectMode_Create);   //0: 表示创建连接，1: 表示切换连接
     void slotReconnect();   // 断线重连
@@ -30,7 +30,7 @@ public:
     int getConnectPort() const { return m_port; }
 
 protected:
-    virtual void sendData(QSharedPointer<MMDataBase> data)=0;
+    virtual void sendData(QSharedPointer<MMBaseData> data)=0;
     virtual void recvData()=0;
     virtual void sendHeartbeat();
 
@@ -38,7 +38,7 @@ protected slots:
     void slotSendHeartbeat();
 
 signals:
-    void signalRecvData(QSharedPointer<MMDataBase> data);
+    void signalRecvData(QSharedPointer<MMBaseData> data);
     void signalTcpConnectStatus(MM_ENTcpConnectError error);
 
 private:

@@ -1,6 +1,7 @@
 #include "mmdatafacotry.h"
 #include "mmcommon.h"
 
+/*
 QSharedPointer<MMDataBase> MMDataFacotry::createRequest(MMUInt32 mainCmd, MMUInt32 subCmd)
 {
     QSharedPointer<MMDataBase> dataBase=nullptr;
@@ -16,3 +17,4 @@ QSharedPointer<MMDataBase> MMDataFacotry::createRequest(MMUInt32 mainCmd, MMUInt
 
     return dataBase;
 }
+*/

@@ -31,7 +31,7 @@ void MMAccountLogin::slotHandlerLogin()
     // 获取用户名
     QString account=ui->edit_account->text();
     if (account.isEmpty()) {
-        qDebug() << "用户名不能为空";
+        qDebug() << "密码不能为空";
         return ;
     }
 

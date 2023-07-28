@@ -1,8 +1,7 @@
 #ifndef __MM_DATA_FACTORY_H__
 #define __MM_DATA_FACTORY_H__
 
-#include "../MMBase/MMBaseData.h"
-#include "../../include/MMProtocol.h"
+#include "../../include/MMInclude.h"
 
 class MMDataFactory {
 public:

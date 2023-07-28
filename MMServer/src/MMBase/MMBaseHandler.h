@@ -2,6 +2,7 @@
 #define __MM_BASEHANDLER_H__
 
 #include "MMBaseData.h"
+#include <memory>
 
 class MMBaseHandler {
 public:

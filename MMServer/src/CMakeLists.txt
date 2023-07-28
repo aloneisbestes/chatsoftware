@@ -6,9 +6,13 @@
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
  
 # 指定头文件路径，PROJECT_SOURCE_DIR: 当前项目的根目录
-include_directories(${PROJECT_SOURCE_DIR}/include
+include_directories(
+    ${PROJECT_SOURCE_DIR}/../MMCommon/include
+    ${PROJECT_SOURCE_DIR}/../MMCommon/src
+    ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/src/MMNetwork
-    ${PROJECT_SOURCE_DIR}/src/MMBase)
+    ${PROJECT_SOURCE_DIR}/src/MMBase
+    )
 
 # 调用子目录下的CMakeLists.txt
 add_subdirectory(MMNetwork)

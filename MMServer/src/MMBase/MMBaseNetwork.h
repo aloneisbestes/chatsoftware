@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 
-#include "MMBaseData.h"
+#include "../../include/MMInclude.h"
 
 class MMBaseNetwork {
 public:

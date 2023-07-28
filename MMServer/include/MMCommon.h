@@ -1,7 +1,7 @@
 #ifndef __MM_COMMON_H__
 #define __MM_COMMON_H__
 
-#include "MMProtocol.h"
+#include "../../MMCommon/include/MMProtocol.h"
 
 // socket结构体别名
 typedef struct sockaddr_in      MMSockaddrIn;

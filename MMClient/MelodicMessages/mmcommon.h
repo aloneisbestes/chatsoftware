@@ -3,6 +3,10 @@
 
 /* 公共头文件 */
 #include <QColor>
+#include <QCoreApplication>
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
 #include "MMProtocol.h"
 class QWidget;
 
@@ -50,7 +54,13 @@ void setWindowShadow(QWidget *parent, QWidget *w, QColor color=QColor(0,0,0,150)
 // 设置MM协议头
 void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8 messageFormat=MessageFormat_Json,
                  MMUInt32 cmdState=0, MMUInt8 messageType=MessageType_Msg, MMUInt32 dataLen=0, MMUInt32 check=MM_HEADER_CHECK);
+
+// qt 自定义日志系统
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 /************************ 公共函数 End ************************/
 
+// 注册类型
+void MMQRegisterMetaType();
+#define MM_DEBUG
 
 #endif // MMCOMMON_H

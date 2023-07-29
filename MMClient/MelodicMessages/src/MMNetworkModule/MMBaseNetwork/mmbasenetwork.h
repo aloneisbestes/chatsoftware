@@ -1,4 +1,4 @@
-    #ifndef MMBASENETWORK_H
+#ifndef MMBASENETWORK_H
 #define MMBASENETWORK_H
 
 #include <QObject>
@@ -13,7 +13,7 @@ class MMBaseNetwork : public QObject
 {
     Q_OBJECT
 public:
-    explicit MMBaseNetwork(QObject *parent = nullptr);
+    explicit MMBaseNetwork(const QString &tcpName="BaseTcp", QObject *parent = nullptr);
     ~MMBaseNetwork();
 
 public slots:
@@ -29,17 +29,24 @@ public:
     void setConnectPort(int port) { m_port=port; }
     int getConnectPort() const { return m_port; }
 
+    void handlerHeartbeat(QSharedPointer<MMBaseData> data);
+
 protected:
-    virtual void sendData(QSharedPointer<MMBaseData> data)=0;
-    virtual void recvData()=0;
+    virtual void sendData(QSharedPointer<MMBaseData> data);
+    virtual void recvData();
     virtual void sendHeartbeat();
+    virtual void messageRelay(QSharedPointer<MMBaseData> data)=0;
 
 protected slots:
     void slotSendHeartbeat();
+    void slotReconnectHandler();
 
 signals:
     void signalRecvData(QSharedPointer<MMBaseData> data);
     void signalTcpConnectStatus(MM_ENTcpConnectError error);
+
+private:
+    void waitTcpConnect();
 
 private:
     QTcpSocket *m_baseSocket;
@@ -47,7 +54,10 @@ private:
     int m_port;
     QTimer *m_sendHeartBeatTimer;   // 心跳包发送定时器
     int m_heartBeatTimerSecnMcs;    // 心跳包间隔毫秒
+    QTimer *m_reconnectTiemr;       // 断线重连定时器
+    int m_reconnectTiemrMcs;        // 重连间隔多少秒
     MM_ENTcpConnectError m_connectError;             // 连接错误信息
+    QString m_tcpName;
 };
 
 #endif // MMBASENETWORK_H

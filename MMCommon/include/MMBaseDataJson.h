@@ -5,6 +5,7 @@
 #include <memory>
 #ifdef QT_CORE_LIB
 #include <QJsonObject>
+#include <QJsonDocument>
 #define MMJson QJsonObject
 #define isExist(arg) contains(arg)
 #else
@@ -19,12 +20,30 @@ public:
     MMBaseDataJson(MMUInt32 mainCmd=MMMainCmd_None, MMUInt32 subCmd=MMMainCmd_None);
     ~MMBaseDataJson();
 
-    void setJsonstr(std::shared_ptr<char> jsonstr, int len);
-    std::shared_ptr<char> getJsonstr()const;
-    int getLen() const;
+    void setJsonstr(const std::string &jsonstr);
+    void setJsonstr(const char *jsonstr);
+    const std::string &getJsonstr()const;
 
     void setJsonroot(MMJson &jsonroot);
     const MMJson &getJsonroot()const;
+
+    virtual void setData(const char *data);
+
+public:
+#ifdef QT_CORE_LIB
+    static QByteArray createJson(MMJson &jsonroot);
+#else
+    static std::string createJson(MMJson &jsonroot);
+#endif //
+
+    static MMJson parseJson(const char *jsonstr, bool &isSuccess);
+
+    /**
+     * @brief isParseSuccess
+     * 检测json解析是否成功
+     * @return
+     */
+    bool isParseSuccess() const;
 
 protected:
     // 创建数据
@@ -32,13 +51,13 @@ protected:
     // 解析数据
     virtual void parseData()=0;
     // 解析json数据
-    virtual bool parseJsonData();
+    virtual void parseJsonData();
     // 创建json数据
     virtual void createJsonData();
 private:
-    std::shared_ptr<char> m_jsonstr;      // json字符串
-    int m_len;  // json字符串的长度
+    std::string m_jsonstr;      // json字符串
     MMJson m_jsonroot;     // json
+    bool m_isParseSuccess;  // 是否解析成功
 };
 
 #endif // __MM_BASE_DATA_JSON_H__

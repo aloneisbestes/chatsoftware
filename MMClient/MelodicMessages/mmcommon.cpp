@@ -1,6 +1,8 @@
 #include "mmcommon.h"
 #include <QGraphicsDropShadowEffect>
 #include <QWidget>
+#include "mmsystemglobal.h"
+#include <QDateTime>
 
 char __close_icon_path[3][128] = {
     ":/Global/close.png",
@@ -28,4 +30,38 @@ void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8
     header.messageType=messageType;
     header.dataLen=dataLen;
     header.check=check;
+}
+
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    Q_UNUSED(context)
+    // QString logFileName = "application.log";
+    QTextStream textStream(MMSystemGlobal::instance()->m_fileLog);
+    // 获取当前时间
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    // 格式化时间为 "yy-MM-dd hh:mm:ss" 的字符串
+    QString formattedTime = currentDateTime.toString("yy-MM-dd hh:mm:ss");
+    switch ((int)type)
+    {
+    /*case QtDebugMsg:
+        qDebug() << msg;
+        break;*/
+    case QtInfoMsg:
+        textStream << formattedTime << " [Info]: " << msg << "\n";
+        break;
+    case QtWarningMsg:
+        textStream << formattedTime << " [Warning]: " << msg << "\n";
+        break;
+    case QtCriticalMsg:
+        textStream << formattedTime << " [Critical]: " << msg << "\n";
+        break;
+    case QtFatalMsg:
+        textStream << formattedTime << " [Fatal]: " << msg << "\n";
+        break;
+    }
+}
+
+void MMQRegisterMetaType()
+{
+    qRegisterMetaType<MM_ENTcpConnectMode>("MM_ENTcpConnectMode");
 }

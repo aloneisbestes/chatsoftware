@@ -36,6 +36,10 @@ INCLUDEPATH += src/MMGlobalModule
 INCLUDEPATH += src/MMGlobalModule/MMDistroySystem
 INCLUDEPATH += src/MMGlobalModule/MMInstance
 INCLUDEPATH += $$PWD/../../MMCommon/include
+INCLUDEPATH += src/MMFactoryModule/MMDataFactory
+INCLUDEPATH += src/MMNetworkModule/MMBaseNetwork
+INCLUDEPATH += src/MMNetworkModule/MMNetwork
+
 
 include(src/MMUiModule/MMUiModule.pri)
 include(src/MMNetworkModule/MMNetworkModule.pri)
@@ -43,6 +47,7 @@ include(src/MMGlobalModule/MMGlobalModule.pri)
 include(src/MMDataModule/MMDataModule.pri)
 include(src/MMFactoryModule/MMFactoryModule.pri)
 include($$PWD/../../MMCommon/MMCommon.pri)
+include(configuration/MMConfiguration.pri)
 
 # 设置构建目录
 CONFIG(release, debug|release) {

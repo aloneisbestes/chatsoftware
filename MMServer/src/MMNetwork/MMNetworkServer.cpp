@@ -47,10 +47,13 @@ MMNetworkServer::MMNetworkServer(int port, int epollMode, const std::string &ip)
     }
 
     struct epoll_event event;
+    event.events = EPOLLIN; // 指定需要监听的事件类型，例如 EPOLLIN 表示读事件
+    /*
     if (m_epollMode == MM_EPOLL_IN) 
         event.events = EPOLLIN; // 指定需要监听的事件类型，例如 EPOLLIN 表示读事件
     else 
-        m_epollMode = EPOLLIN | EPOLLET;
+        event.events = EPOLLIN;
+    */
     event.data.fd = sockfd; // 设置关联的文件描述符
 
     if (epoll_ctl(m_epollfd, EPOLL_CTL_ADD, sockfd, &event) == -1) {
@@ -128,6 +131,7 @@ void MMNetworkServer::loop() {
                     MMPrint("the current file descriptor is the system's standard input, output, and error streams.\n");
                     continue;
                 }
+                MMPrint("read\n");
             }
 
         }

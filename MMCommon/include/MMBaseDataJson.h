@@ -8,10 +8,12 @@
 #include <QJsonDocument>
 #define MMJson QJsonObject
 #define isExist(arg) contains(arg)
+#define MMAssert(arg) Q_ASSERT(arg)
 #else
 #include <jsoncpp/json/json.h>
 #define MMJson Json::Value
 #define isExist(arg) isMember(arg)
+#define MMAssert(arg) assert(arg)
 #endif // QT_VERSION
 #include <cstring>
 
@@ -20,11 +22,12 @@ public:
     MMBaseDataJson(MMUInt32 mainCmd=MMMainCmd_None, MMUInt32 subCmd=MMMainCmd_None);
     ~MMBaseDataJson();
 
+
     void setJsonstr(const std::string &jsonstr);
     void setJsonstr(const char *jsonstr);
     const std::string &getJsonstr()const;
 
-    void setJsonroot(MMJson &jsonroot);
+    void setJsonroot(const MMJson &jsonroot);
     const MMJson &getJsonroot()const;
 
     virtual void setData(const char *data);
@@ -46,14 +49,18 @@ public:
     bool isParseSuccess() const;
 
 protected:
-    // 创建数据
-    virtual void createData()=0;
-    // 解析数据
-    virtual void parseData()=0;
+    // 将子类对象序列化为json数据
+    virtual void serializedData()=0;
+
+    // 将json数据序列表为子类对象中的数据
+    virtual void deserializedData()=0;
+
+private:
     // 解析json数据
-    virtual void parseJsonData();
+    void parseJsonData();
     // 创建json数据
-    virtual void createJsonData();
+    void createJsonData();
+
 private:
     std::string m_jsonstr;      // json字符串
     MMJson m_jsonroot;     // json

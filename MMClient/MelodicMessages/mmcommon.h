@@ -35,6 +35,7 @@ typedef enum tagMMTcpConnectError {
 
 /************************ 宏定义 Start ************************/
 #define MM_HEADER_CHECK 112233
+#define MM_DEBUG
 /************************ 宏定义 end ************************/
 
 
@@ -57,10 +58,13 @@ void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8
 
 // qt 自定义日志系统
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
-/************************ 公共函数 End ************************/
 
 // 注册类型
 void MMQRegisterMetaType();
-#define MM_DEBUG
+
+// 设置字体大小
+void setMMFont(int fontSize, QWidget *widget);
+
+/************************ 公共函数 End ************************/
 
 #endif // MMCOMMON_H

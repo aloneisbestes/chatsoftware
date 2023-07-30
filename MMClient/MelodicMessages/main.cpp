@@ -1,6 +1,7 @@
 #include <QApplication>
 #include "MMSystemGlobal.h"
 #include "mmcommon.h"
+#include "mmuimanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,8 @@ int main(int argc, char *argv[])
 
     MMQRegisterMetaType();
     MMSystemGlobal::instance()->init();
+
+    MMUIManager::instance()->toLogin();
 
     return a.exec();
 }

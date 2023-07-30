@@ -3,7 +3,8 @@
 MMBaseDataJson::MMBaseDataJson(MMUInt32 mainCmd, MMUInt32 subCmd)
     : MMBaseData(mainCmd, subCmd)
 {
-
+    MMBaseData::setMMCreateFuncPtr(reinterpret_cast<MMFuncPtr>(&MMBaseDataJson::createJsonData));
+    MMBaseData::setMMParseFuncPtr(reinterpret_cast<MMFuncPtr>(&MMBaseDataJson::parseJsonData));
 }
 
 MMBaseDataJson::~MMBaseDataJson()
@@ -14,13 +15,11 @@ MMBaseDataJson::~MMBaseDataJson()
 void MMBaseDataJson::setJsonstr(const std::string &jsonstr)
 {
     m_jsonstr=jsonstr;
-    parseJsonData();
 }
 
 void MMBaseDataJson::setJsonstr(const char *jsonstr)
 {
     m_jsonstr=jsonstr;
-    parseJsonData();
 }
 
 const std::string &MMBaseDataJson::getJsonstr() const
@@ -28,10 +27,9 @@ const std::string &MMBaseDataJson::getJsonstr() const
     return m_jsonstr;
 }
 
-void MMBaseDataJson::setJsonroot(QJsonObject &jsonroot)
+void MMBaseDataJson::setJsonroot(const QJsonObject &jsonroot)
 {
     m_jsonroot=jsonroot;
-    createJsonData();
 }
 
 const QJsonObject &MMBaseDataJson::getJsonroot() const
@@ -49,6 +47,7 @@ QByteArray MMBaseDataJson::createJson(QJsonObject &jsonroot)
 {
     //QJsonParseError jsonError;
     //QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonroot.toUtf8(), &jsonError);
+    // Q_UNUSED(jsonroot);
     return QByteArray();
 }
 #else
@@ -67,29 +66,36 @@ MMJson MMBaseDataJson::parseJson(const char *jsonstr, bool &isSuccess)
 
     if (jsonError.error == QJsonParseError::NoError) {
         root=jsonDoc.object();
+        isSuccess=true;
     }
     else {
-        Q_ASSERT_X(jsonError.error == QJsonParseError::NoError,
-                   "static func MMBaseDataJson::parseJson", "parse json error");
+        MMAssert(jsonError.error == QJsonParseError::NoError);
+        isSuccess=false;
     }
-
 #else
 #endif // QT_CORE_LIB
 
     return root;
 }
 
+bool MMBaseDataJson::isParseSuccess() const
+{
+    return m_isParseSuccess;
+}
+
 void MMBaseDataJson::parseJsonData()
 {
+    bool isSuccess;
+    MMBaseDataJson::parseJson(getJsonstr().c_str(), isSuccess);
+    if (isSuccess) {
 
+    }
+    else {
+        MMAssert(isSuccess==true);
+    }
 }
 
 void MMBaseDataJson::createJsonData()
 {
 
-}
-
-bool MMBaseDataJson::isParseSuccess() const
-{
-    return m_isParseSuccess;
 }

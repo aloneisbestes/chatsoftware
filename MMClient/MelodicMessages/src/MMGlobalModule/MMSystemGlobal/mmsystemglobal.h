@@ -31,6 +31,8 @@ public:
     int m_port;   // 服务器端口
     QString m_sServerIp;    // 服务器ip
 
+    QString m_fontFamily;   // 字体家族
+
     void init();
 
 private:

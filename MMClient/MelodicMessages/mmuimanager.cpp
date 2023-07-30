@@ -1,12 +1,14 @@
 #include "mmuimanager.h"
-
+#include "mmloginui.h"
+#include <QApplication>
+#include "mmdistroysystem.h"
 
 MMUIManager *MMUIManager::__ins=nullptr;
 
 MMUIManager::MMUIManager(QObject *parent)
     : QObject{parent}
 {
-
+    m_loginUI=nullptr;
 }
 
 MMUIManager *MMUIManager::instance()
@@ -28,4 +30,45 @@ void MMUIManager::disInstance()
 MMUIManager::~MMUIManager()
 {
 
+}
+
+void MMUIManager::toLogin()
+{
+    if (m_loginUI == nullptr) {
+        m_loginUI=new MMLoginUI();
+        connect(m_loginUI, &MMLoginUI::signalLogout, this, &MMUIManager::slotLoginout);
+    }
+    m_loginUI->show();
+}
+
+void MMUIManager::quitApplation()
+{
+    // 保存资源
+    // ..............
+
+    // 清理资源
+    MMDistroySystem::instance()->disAllInstance();
+    MMDistroySystem::disInstanc();
+
+    // 退出程序
+    QApplication::quit();
+}
+
+void MMUIManager::slotLoginSuccess()
+{
+    // 登录成功显示界面
+    m_loginUI->deleteLater();   // 删除登录界面
+
+    // 进入界面
+}
+
+void MMUIManager::slotLoginout()
+{
+    if (m_loginUI) {
+        m_loginUI->deleteLater();
+        m_loginUI=nullptr;
+    }
+
+    // 退出登录界面
+    quitApplation();
 }

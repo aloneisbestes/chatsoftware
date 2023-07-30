@@ -74,11 +74,23 @@ MMSystemGlobal::MMSystemGlobal(QObject *parent)
     QSize screenSize = screen->size();
     m_dWidth=screenSize.width();
     m_dHeight=screenSize.height();
+
+    m_fontFamily="思源黑体";
+
+    /**
+     * 保留界面适配接口，后续如果 需要做界面适配使用
+     * 在对界面的按钮或界面的大小设置时，需要获取比例，然后与比例相乘
+     */
+#if 0
     // 设置宽高缩放比例
     m_dZoomHeight=m_dHeight/m_dDfaultHeight;
     m_dZoomWidth=m_dWidth/m_dDefaultWidth;
     m_dZoom=m_dZoomWidth;   // 默认比例以宽为比例
-
+#else
+    m_dZoomHeight=1.0;
+    m_dZoomWidth=1.0;
+    m_dZoom=m_dZoomWidth;   // 默认比例以宽为比例
+#endif
     // 获取程序所在路径
     m_sExePath=QCoreApplication::applicationDirPath();
     qDebug() << "m_sExePath: " << m_sExePath;

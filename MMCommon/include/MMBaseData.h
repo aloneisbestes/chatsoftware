@@ -4,13 +4,20 @@
 #include <cstring>
 #include "MMProtocol.h"
 
+
+
 class MMBaseData {
+public:
+    typedef void (MMBaseData::*MMFuncPtr)();
+
 public:
     MMBaseData(MMUInt32 mainCmd=MMMainCmd_None, MMUInt32 subCmd=MMMainCmd_None)
     {
         m_header.mainCmd=mainCmd;
         m_header.subCmd=subCmd;
         std::memset(&m_header, 0, MMSTHEADER_SIZE);
+        m_parseFunc=nullptr;
+        m_createFunc=nullptr;
     }
 
     ~MMBaseData() {}
@@ -29,14 +36,34 @@ public:
      */
     virtual void setData(const char *data)=0;
 
-protected:
     // 创建数据
-    virtual void createData()=0;
+    virtual void createData()
+    {
+        if (m_createFunc == nullptr) {
+            // Q_ASSERT_X(m_createFunc != nullptr, "MMBaseData::createData", "The creation function pointer is not set");
+            return ;
+        }
+        (this->*m_createFunc)();
+    }
+
     // 解析数据
-    virtual void parseData()=0;
+    virtual void parseData()
+    {
+        if (m_parseFunc == nullptr) {
+            // Q_ASSERT_X(m_createFunc != nullptr, "MMBaseData::createData", "The creation function pointer is not set");
+            return ;
+        }
+        (this->*m_parseFunc)();
+    }
+
+protected:
+    void setMMParseFuncPtr(MMFuncPtr parseFunc=nullptr) { m_parseFunc=parseFunc; }
+    void setMMCreateFuncPtr(MMFuncPtr createFunc=nullptr) { m_createFunc=createFunc; }
 
 private:
     MM_STHeader m_header;
+    MMFuncPtr m_parseFunc;
+    MMFuncPtr m_createFunc;
 };
 
 #endif // __MM_BASEDATA_H__

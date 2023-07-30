@@ -1,11 +1,11 @@
 FORMS += \
-    $$PWD/mmaccountlogin.ui \
-    $$PWD/mmlogindialog.ui
+    $$PWD/mmaccountloginui.ui \
+    $$PWD/mmloginui.ui
 
 HEADERS += \
-    $$PWD/mmaccountlogin.h \
-    $$PWD/mmlogindialog.h
+    $$PWD/mmaccountloginui.h \
+    $$PWD/mmloginui.h
 
 SOURCES += \
-    $$PWD/mmaccountlogin.cpp \
-    $$PWD/mmlogindialog.cpp
+    $$PWD/mmaccountloginui.cpp \
+    $$PWD/mmloginui.cpp

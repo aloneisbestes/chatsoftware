@@ -7,7 +7,7 @@ public:
     ~MMDistroySystem();
 
     static MMDistroySystem *instance();
-    static MMDistroySystem *disInstanc();
+    static void disInstanc();
     static void disAllInstance();
 
 private:

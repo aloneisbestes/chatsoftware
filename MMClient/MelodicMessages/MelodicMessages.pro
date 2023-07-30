@@ -36,9 +36,11 @@ INCLUDEPATH += src/MMGlobalModule
 INCLUDEPATH += src/MMGlobalModule/MMDistroySystem
 INCLUDEPATH += src/MMGlobalModule/MMInstance
 INCLUDEPATH += $$PWD/../../MMCommon/include
+# message($$PWD/../../MMCommon/include)
 INCLUDEPATH += src/MMFactoryModule/MMDataFactory
 INCLUDEPATH += src/MMNetworkModule/MMBaseNetwork
 INCLUDEPATH += src/MMNetworkModule/MMNetwork
+INCLUDEPATH += src/MMGlobalModule/MMDistroySystem
 
 
 include(src/MMUiModule/MMUiModule.pri)
@@ -48,6 +50,10 @@ include(src/MMDataModule/MMDataModule.pri)
 include(src/MMFactoryModule/MMFactoryModule.pri)
 include($$PWD/../../MMCommon/MMCommon.pri)
 include(configuration/MMConfiguration.pri)
+
+# 去掉警告信息
+QMAKE_CXXFLAGS += -Wno-unused-parameter
+QMAKE_CXXFLAGS += -Wno-sign-compare
 
 # 设置构建目录
 CONFIG(release, debug|release) {

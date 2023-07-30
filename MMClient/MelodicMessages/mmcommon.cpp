@@ -3,6 +3,7 @@
 #include <QWidget>
 #include "mmsystemglobal.h"
 #include <QDateTime>
+#include <QFont>
 
 char __close_icon_path[3][128] = {
     ":/Global/close.png",
@@ -64,4 +65,13 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
 void MMQRegisterMetaType()
 {
     qRegisterMetaType<MM_ENTcpConnectMode>("MM_ENTcpConnectMode");
+}
+
+void setMMFont(int fontSize, QWidget *widget)
+{
+    static double zoomWidth=MMSystemGlobal::instance()->m_dZoomWidth;
+    static QFont tmpFont(MMSystemGlobal::instance()->m_fontFamily);
+
+    tmpFont.setPixelSize(fontSize*zoomWidth);
+    widget->setFont(tmpFont);
 }

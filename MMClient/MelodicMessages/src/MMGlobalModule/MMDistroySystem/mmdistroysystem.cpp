@@ -17,6 +17,12 @@ MMDistroySystem *MMDistroySystem::instance()
     return MMDistroySystem::__ins;
 }
 
+void MMDistroySystem::disInstanc()
+{
+    if (MMDistroySystem::__ins)
+        delete MMDistroySystem::__ins;
+}
+
 void MMDistroySystem::disAllInstance()
 {
     MMDataManager::disInstance();

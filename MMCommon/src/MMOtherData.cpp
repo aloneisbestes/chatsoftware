@@ -20,13 +20,3 @@ void MMOtherData::setData(const char *data)
     Q_UNUSED(data);
 #endif // QT_CORE_LIB
 }
-
-void MMOtherData::createData()
-{
-
-}
-
-void MMOtherData::parseData()
-{
-
-}

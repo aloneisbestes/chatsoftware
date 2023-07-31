@@ -17,6 +17,11 @@ MMAccountLoginUI::MMAccountLoginUI(QWidget *parent) :
     ui->setupUi(this);
 
     initMMAccountLoginUI();
+
+#if __APPLE__
+    ui->account->setAttribute(Qt::WA_MacShowFocusRect, false);
+    ui->password->setAttribute(Qt::WA_MacShowFocusRect, false);
+#endif //__APPLE__
 }
 
 MMAccountLoginUI::~MMAccountLoginUI()

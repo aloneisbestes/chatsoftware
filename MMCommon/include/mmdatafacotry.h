@@ -2,7 +2,7 @@
 #define MMDATAFACOTRY_H
 
 #include "MMBaseData.h"
-#include <QSharedPointer>
+#include <memory>
 
 class MMDataFacotry
 {
@@ -13,14 +13,14 @@ public:
 
     /* 心跳 */
     // 创建心跳请求
-    static QSharedPointer<MMBaseData> createHeartbeat();
+    static std::shared_ptr<MMBaseData> createHeartbeat();
 
     /* 创建响应数据 */
-    static QSharedPointer<MMBaseData> createResponse(MMUInt32 mainCmd, MMUInt32 subCmd);
-    static QSharedPointer<MMBaseData> createResponse(const MM_STHeader &header);
+    static std::shared_ptr<MMBaseData> createResponse(MMUInt32 mainCmd, MMUInt32 subCmd);
+    static std::shared_ptr<MMBaseData> createResponse(const MM_STHeader &header);
 
 private:
-    static QSharedPointer<MMBaseData> createRequest(MMUInt32 mainCmd, MMUInt32 subCmd);
+    static std::shared_ptr<MMBaseData> createRequest(MMUInt32 mainCmd, MMUInt32 subCmd);
     // static QSharedPointer<MMBaseData> createRequest(MMUInt32 mainCmd, MMUInt32 subCmd);
 };
 

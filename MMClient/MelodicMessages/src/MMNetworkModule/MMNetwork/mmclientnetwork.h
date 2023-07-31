@@ -10,10 +10,10 @@ public:
     explicit MMClientNetwork(QObject *parent = nullptr);
     ~MMClientNetwork();
 
-    virtual void messageRelay(QSharedPointer<MMBaseData> data)override;
+    virtual void messageRelay(std::shared_ptr<MMBaseData> data)override;
 
 signals:
-    void signalClientNetworkResp(QSharedPointer<MMBaseData> data);
+    void signalClientNetworkResp(std::shared_ptr<MMBaseData> data);
 };
 
 #endif // MMCLIENTNETWORK_H

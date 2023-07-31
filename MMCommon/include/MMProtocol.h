@@ -9,6 +9,7 @@ typedef char                MMInt8;
 typedef unsigned char       MMUInt8;
 typedef short               MMInt16;
 typedef unsigned short      MMUInt16;
+typedef long long           MMInt64;
 /******************** 类型定义 End ********************/
 
 
@@ -40,12 +41,12 @@ typedef enum _en_MMMainCmd
     MMMainCmd_None=-1,              // 无命令码
     MMMainCmd_Login_Req=1,          // 登录主命令请求
 
-    MMMainCmd_Heartbeat,            // 心跳主命令请求
+    MMMainCmd_Heartbeat_Req,            // 心跳主命令请求
 
 
     MMMainCmd_Login_Resp=MMMainCmd_Login_Req+CMD_RESPONSE_NUM,  //  响应主命令登录
 
-    MMMainCmd_Heartbeat_Resp=MMMainCmd_Heartbeat+CMD_RESPONSE_NUM,  // 心跳主命令响应
+    MMMainCmd_Heartbeat_Resp=MMMainCmd_Heartbeat_Req+CMD_RESPONSE_NUM,  // 心跳主命令响应
 }MM_ENMainCmd;
 /********************* 主命令码 End *********************/
 
@@ -53,12 +54,15 @@ typedef enum _en_MMMainCmd
 
 
 /********************* 子命令码 Start *********************/
-typedef enum _en_LoginCmd
+// 登录子命令
+typedef enum _en_MMLoginCmdType
 {
-    LoginCmd_None=-1,
-    LoginCmd_Account=0,     // 用户名登录
-    LoginCmd_Out,           // 退出登录
-}MM_ENLoginCmd;
+    MMLoginCmdType_None=-1,	// 无子命令
+    MMLoginCmdType_Account=0,	// 用户名密码登录
+    MMLoginCmdType_QRCode=1,	// 二维码登录
+    MMLoginCmdType_Logout=2,	// 退出登录
+}MM_ENLoginCmdType;
+
 /********************* 子命令码 End *********************/
 
 

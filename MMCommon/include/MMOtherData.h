@@ -9,12 +9,6 @@ public:
     ~MMOtherData();
 
     virtual void setData(const char *data)override;
-
-protected:
-    // 创建数据
-    virtual void createData()override;
-    // 解析数据
-    virtual void parseData()override;
 };
 
 

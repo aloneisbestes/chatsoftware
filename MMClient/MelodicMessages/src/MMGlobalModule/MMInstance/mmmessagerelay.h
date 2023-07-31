@@ -26,7 +26,7 @@ signals:
     void signalConnectClientTcp(const QString &ip, int port, MM_ENTcpConnectMode connectMode);
 
 protected slots:
-    void slotHandlerClientNetworkResp(QSharedPointer<MMBaseData> data);
+    void slotHandlerClientNetworkResp(std::shared_ptr<MMBaseData> data);
 
 private:
     static MMMessageRelay *__ins;

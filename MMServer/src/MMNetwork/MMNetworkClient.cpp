@@ -65,3 +65,7 @@ bool MMNetworkClient::sendData(std::shared_ptr<MMBaseData> data) {
 
     return true;
 }
+
+void MMNetworkClient::run() {
+    MMPrint("MMNetwork run: handler client request");
+}

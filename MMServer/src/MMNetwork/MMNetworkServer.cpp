@@ -10,6 +10,13 @@
 #include <cstring>
 #include "MMNetworkServer.h"
 #include "../../include/MMError.h"
+#include "MMNetworkClient.h"
+
+// 线程处理函数
+static void threadRun(std::shared_ptr<MMNetworkClient> handler) {
+    // DebugPrint("to thread run.");
+    handler->run();
+}
 
 MMNetworkServer::MMNetworkServer(int port, int epollMode, const std::string &ip)
     : MMBaseNetwork(-1, port, ip)
@@ -59,6 +66,10 @@ MMNetworkServer::MMNetworkServer(int port, int epollMode, const std::string &ip)
     if (epoll_ctl(m_epollfd, EPOLL_CTL_ADD, sockfd, &event) == -1) {
         throw __MMError_Code[MM_EnumError::MMEnumErrorType_AddEpollfdError];
     }
+
+    // 创建处理线程
+    m_handlerThreadSize=4;
+    m_handlerThreadPool = new MMThreadPool(m_handlerThreadSize);
 #endif 
 }
 
@@ -131,7 +142,9 @@ void MMNetworkServer::loop() {
                     MMPrint("the current file descriptor is the system's standard input, output, and error streams.\n");
                     continue;
                 }
-                MMPrint("read\n");
+                std::shared_ptr<MMNetworkClient> client=std::make_shared<MMNetworkClient>(clientfd, 0, "192.168.3.4");
+                client->setEpollMode(m_epollMode);
+                m_handlerThreadPool->enqueue(threadRun, client);
             }
 
         }

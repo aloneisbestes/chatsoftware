@@ -54,7 +54,7 @@ QByteArray MMBaseDataJson::createJson(MMJson &jsonroot)
 }
 #else
 std::string MMBaseDataJson::createJson(MMJson &jsonroot) {
-
+    return "";
 }
 #endif
 

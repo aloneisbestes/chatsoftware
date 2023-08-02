@@ -11,6 +11,7 @@
 #define MMAssert(arg) Q_ASSERT(arg)
 #else
 #include <jsoncpp/json/json.h>
+#include <assert.h>
 #define MMJson Json::Value
 #define isExist(arg) isMember(arg)
 #define MMAssert(arg) assert(arg)

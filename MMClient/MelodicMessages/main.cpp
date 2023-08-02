@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "MMSystemGlobal.h"
+#include "mmsystemglobal.h"
 #include "mmcommon.h"
 #include "mmuimanager.h"
 #include "mmlogindata.h"

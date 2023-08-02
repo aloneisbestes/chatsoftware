@@ -1,6 +1,6 @@
 #include "mmaccountloginui.h"
 #include "ui_mmaccountloginui.h"
-#include "MMSystemGlobal.h"
+#include "mmsystemglobal.h"
 #include "mmcommon.h"
 
 // 系统图标

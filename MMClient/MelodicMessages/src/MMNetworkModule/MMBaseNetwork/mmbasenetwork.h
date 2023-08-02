@@ -5,6 +5,7 @@
 
 #include "MMBaseData.h"
 #include "mmcommon.h"
+#include "MMProtocol.h"
 
 class QTcpSocket;
 class QTimer;

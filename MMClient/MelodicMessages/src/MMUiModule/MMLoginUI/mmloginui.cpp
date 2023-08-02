@@ -1,7 +1,7 @@
 #include "mmloginui.h"
 #include "ui_mmloginui.h"
 #include "mmcommon.h"
-#include "MMSystemGlobal.h"
+#include "mmsystemglobal.h"
 #include <QMouseEvent>
 
 static QString __qrcodeIcon=":/Global/QRcode_icon.png";

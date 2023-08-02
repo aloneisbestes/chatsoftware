@@ -77,7 +77,7 @@ void MMBaseNetwork::sendData(std::shared_ptr<MMBaseData> data)
 {
     auto &header=data->getMMHeader();
     qint64 sendLen=0;
-    if (header.messageType == (MMInt8)MessageFormat_Json) { // json
+    if (header.messageFormat == (MMInt8)MessageFormat_Json) { // json
         // 发送头
         sendLen=m_baseSocket->write(reinterpret_cast<const char *>(&header), MMSTHEADER_SIZE);
         if (sendLen != MMSTHEADER_SIZE) {
@@ -96,18 +96,17 @@ void MMBaseNetwork::sendData(std::shared_ptr<MMBaseData> data)
         }
 
     }
-    else if (header.messageType == (MMInt8)MessageFormat_Binary) {  // binary
+    else if (header.messageFormat == (MMInt8)MessageFormat_Binary) {  // binary
 
     }
-    else if (header.messageType == (MMInt8)MessageFormat_None) { // 无数据
+    else if (header.messageFormat == (MMInt8)MessageFormat_None) { // 无数据
         // 发送头
         sendLen=m_baseSocket->write(reinterpret_cast<const char *>(&header), MMSTHEADER_SIZE);
         if (sendLen != MMSTHEADER_SIZE) {
             qCritical() << "send header error.";
             return;
         }
-        if ((header.mainCmd != (MMInt32)MMMainCmd_Heartbeat_Req) ||
-            (header.mainCmd != (MMInt32)MMMainCmd_Heartbeat_Resp)) {
+        if (header.messageType != MM_ENMessageType::MessageType_Heart) {
             qDebug() << "send content success.";
         }
     }
@@ -126,13 +125,19 @@ void MMBaseNetwork::recvData()
     recvLen=m_baseSocket->read(reinterpret_cast<char*>(&header), MMSTHEADER_SIZE);
     if (recvLen == MMSTHEADER_SIZE && header.check == MMCHECK_VERIFY) {
         while (1) {
-            recvContent+=m_baseSocket->readAll();
+            recvContent+=m_baseSocket->read(header.dataLen);
             if (recvContent.size() == header.dataLen) {
                 break;
+            }
+            else {
+                m_baseSocket->waitForReadyRead(1500);
             }
         }
 
         resp=MMDataFacotry::createResponse(header);
+        if (recvContent.size() != 0 && header.dataLen != 0) {
+            resp->setData(recvContent.toStdString().c_str());
+        }
     }
     else {
         qWarning() << "MMBaseNetwork::recvData header check or recv len is error";

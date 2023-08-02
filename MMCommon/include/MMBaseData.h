@@ -3,7 +3,7 @@
 
 #include <cstring>
 #include "MMProtocol.h"
-
+#include <string>
 
 
 class MMBaseData {

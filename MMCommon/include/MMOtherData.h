@@ -11,7 +11,6 @@ public:
     virtual void setData(const char *data)override;
 };
 
-
 using MMHeartbeat = MMOtherData;
 
 #endif // __MM_OHTER_DATA_H__

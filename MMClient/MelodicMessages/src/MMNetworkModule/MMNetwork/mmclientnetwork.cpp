@@ -14,15 +14,19 @@ MMClientNetwork::~MMClientNetwork()
 void MMClientNetwork::messageRelay(std::shared_ptr<MMBaseData> data)
 {
     MM_STHeader header=data->getMMHeader();
-    switch (header.mainCmd) {
-    case MMMainCmd_Heartbeat_Req:
-    case MMMainCmd_Heartbeat_Resp:
+
+    MMUInt32 cmdType=MM_CommandSet(header.mainCmd,header.subCmd);
+    switch (cmdType) {
+    case MM_CommandSet(MMMainCmd_Heartbeat_Resp,0):
     {
         // 处理心跳
         handlerHeartbeat(data);
-        break;
     }
+    break;
     default:
-        break;
+    {
+        qDebug() << "main cmd or sub cmd is error";
+    }
+    break;
     }
 }

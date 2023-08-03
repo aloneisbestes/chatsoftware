@@ -16,6 +16,7 @@ include_directories(
 
 # 调用子目录下的CMakeLists.txt
 add_subdirectory(MMNetwork)
+add_subdirectory(MMFactory)
 
 # 生成可执行文件
 # add_executable(mgraccount ${ALL_SRC} test.cpp)
@@ -24,4 +25,4 @@ add_executable(MMChat main.cpp MMCommon.cpp MMError.cpp)
 
 # 添加外部链接库
 link_directories(${PROJECT_SOURCE_DIR}/lib)
-target_link_libraries(MMChat MMNetwork)
+target_link_libraries(MMChat MMNetwork MMFactory)

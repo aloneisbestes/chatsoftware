@@ -26,7 +26,7 @@ public:
             }
         }
         else {
-            MMError("create thread number: %s error", poolSize);
+            MMError("create thread number: %d error", poolSize);
         }
     }
     ~MMThreadPool() {

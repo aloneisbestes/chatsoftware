@@ -33,7 +33,7 @@ std::shared_ptr<MMBaseData> MMNetworkClient::recvData() {
         }
 
         // 判断头是否正确
-        if (recvSize != MMSTHEADER_SIZE && header.check != MM_HEADER_CHECK) {
+        if (recvSize != MMSTHEADER_SIZE || header.check != MM_HEADER_CHECK) {
             if (recvSize != MMSTHEADER_SIZE) {
                 MMError("error: recv size is: %d, real size is: %ld.\n", recvSize, MMSTHEADER_SIZE);
             }
@@ -64,8 +64,4 @@ std::shared_ptr<MMBaseData> MMNetworkClient::recvData() {
 bool MMNetworkClient::sendData(std::shared_ptr<MMBaseData> data) {
 
     return true;
-}
-
-void MMNetworkClient::run() {
-    MMPrint("MMNetwork run: handler client request");
 }

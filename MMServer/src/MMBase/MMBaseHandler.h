@@ -4,6 +4,8 @@
 #include "MMBaseData.h"
 #include <memory>
 
+#define MM_HANDLER_VERSION  1
+
 class MMBaseHandler {
 public:
     MMBaseHandler() {}

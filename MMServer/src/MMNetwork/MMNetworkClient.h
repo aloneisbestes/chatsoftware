@@ -17,9 +17,7 @@ public:
     virtual bool sendData(std::shared_ptr<MMBaseData> data) override;
 
     void setEpollMode(int epollMode);
-
-    void run();
-
+    
 private:
     int m_epollMode;
     std::list<char> m_buffer;

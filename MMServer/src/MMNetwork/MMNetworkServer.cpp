@@ -11,9 +11,14 @@
 #include "MMNetworkServer.h"
 #include "../../include/MMError.h"
 #include "MMNetworkClient.h"
+#include "MMBaseHandler.h"
+#include "../MMFactory/MMHandlerFactory.h"
+#include <unordered_map>
+
+std::unordered_map<int, std::shared_ptr<MMNetworkClient>> __clientMap;
 
 // 线程处理函数
-static void threadRun(std::shared_ptr<MMNetworkClient> handler) {
+static void threadRun(std::shared_ptr<MMBaseHandler> handler) {
     // DebugPrint("to thread run.");
     handler->run();
 }
@@ -128,7 +133,7 @@ void MMNetworkServer::loop() {
                 // 添加该客服端对象
                 std::shared_ptr<MMNetworkClient> cleintSharedPtr(
                     new MMNetworkClient(clientfd, ntohs(clientAddrIn.sin_port), inet_ntoa(clientAddrIn.sin_addr)));
-                m_clientMap[i]=cleintSharedPtr;
+                __clientMap[clientfd]=cleintSharedPtr;
             } 
             else if ((events[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR))) {
                 // 关闭套接字
@@ -142,11 +147,38 @@ void MMNetworkServer::loop() {
                     MMPrint("the current file descriptor is the system's standard input, output, and error streams.\n");
                     continue;
                 }
-                std::shared_ptr<MMNetworkClient> client=std::make_shared<MMNetworkClient>(clientfd, 0, "192.168.3.4");
-                client->setEpollMode(m_epollMode);
-                m_handlerThreadPool->enqueue(threadRun, client);
-            }
 
+                // 查询是否存在这个sockfd的记录
+                auto client=__clientMap.find(clientfd);
+                if (client == __clientMap.end()) {
+                    MMError("client socked fd: %d, not find information.\n", clientfd);
+                    continue;
+                }
+                
+                // 读取数据
+                auto handlerData=client->second->recvData();
+                if (handlerData == nullptr) {
+                    MMError("recv from ip: %s, prot: %d, read data failed.\n", 
+                        client->second->getIp().c_str(), client->second->getPort());
+                    continue;
+                }
+                MMPrint("recv from ip: %s, port: %d, read data suceess. cmd: %d %d\n",
+                    client->second->getIp().c_str(), client->second->getPort(), 
+                    handlerData->getMMHeader().mainCmd, handlerData->getMMHeader().subCmd);
+
+                // 获取处理类
+                auto handler = MMHandlerFactory::createHandlerData(handlerData->getMMHeader().mainCmd, 
+                    handlerData->getMMHeader().subCmd);
+
+                // 设置处理函数，并且放入线程处理
+                if (handler) {
+                    handler->setHandlerData(handlerData);
+                    m_handlerThreadPool->enqueue(threadRun, handler);
+                }
+                else {
+                    MMPrint("handler class is nullptr.\n");
+                } 
+            }
         }
     }
 #endif

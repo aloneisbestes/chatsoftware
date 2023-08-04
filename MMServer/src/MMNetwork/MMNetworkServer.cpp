@@ -166,6 +166,11 @@ void MMNetworkServer::loop() {
                     client->second->getIp().c_str(), client->second->getPort(), 
                     handlerData->getMMHeader().mainCmd, handlerData->getMMHeader().subCmd);
 
+                if (handlerData->getConstData() != nullptr && 
+                    handlerData->getMMHeader().messageFormat == (int)MM_ENMessageFormat::MessageFormat_Json) {
+                    MMPrint("JSON data: %s\n", handlerData->getConstData());
+                }
+
                 // 获取处理类
                 auto handler = MMHandlerFactory::createHandlerData(handlerData->getMMHeader().mainCmd, 
                     handlerData->getMMHeader().subCmd);

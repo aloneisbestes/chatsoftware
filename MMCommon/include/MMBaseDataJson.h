@@ -32,6 +32,8 @@ public:
     const MMJson &getJsonroot()const;
 
     virtual void setData(const char *data);
+    virtual const char *getConstData() const override;
+    virtual char *getData()override; 
 
 public:
 #ifdef QT_CORE_LIB

@@ -36,6 +36,14 @@ public:
      */
     virtual void setData(const char *data)=0;
 
+    /**
+     * @brief setData
+     * 该函数为纯虚函数，在子类中必须重写，并且需要明确获取子类中得数据，否则建议子类中私有存在
+     * @param data
+     */
+    virtual const char *getConstData() const = 0;
+    virtual char *getData() = 0; 
+
     // 创建数据
     virtual void createData()
     {

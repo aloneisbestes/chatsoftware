@@ -20,3 +20,13 @@ void MMOtherData::setData(const char *data)
     Q_UNUSED(data);
 #endif // QT_CORE_LIB
 }
+
+const char *MMOtherData::getConstData() const
+{
+    return nullptr;
+}
+
+char *MMOtherData::getData()
+{
+    return nullptr;
+} 

@@ -44,6 +44,19 @@ void MMBaseDataJson::setData(const char *data)
     setJsonstr(data);
 }
 
+const char *MMBaseDataJson::getConstData() const 
+{
+    if (getJsonstr().size() == 0)  
+        return nullptr;
+    return getJsonstr().c_str();
+}
+
+char *MMBaseDataJson::getData() 
+{
+    return nullptr;
+}
+
+
 #ifdef QT_CORE_LIB
 QByteArray MMBaseDataJson::createJson(MMJson &jsonroot)
 {

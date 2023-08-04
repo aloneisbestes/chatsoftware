@@ -9,6 +9,8 @@ public:
     ~MMOtherData();
 
     virtual void setData(const char *data)override;
+    virtual const char *getConstData() const override;
+    virtual char *getData()override; 
 };
 
 using MMHeartbeat = MMOtherData;

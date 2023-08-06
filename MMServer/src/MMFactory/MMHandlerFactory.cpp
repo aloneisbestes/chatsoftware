@@ -18,3 +18,11 @@ std::shared_ptr<MMBaseHandler> MMHandlerFactory::createHandlerData(MMUInt32 main
     }
     return handler;
 }
+
+std::shared_ptr<MMBaseHandler> MMHandlerFactory::createHandlerData(std::shared_ptr<MMBaseData> data) {
+    auto &header=data->getMMHeader();
+    std::shared_ptr<MMBaseHandler> handler=createHandlerData(header.mainCmd, header.subCmd);
+    if (handler != nullptr)
+        handler->setHandlerData(data);
+    return handler;
+}

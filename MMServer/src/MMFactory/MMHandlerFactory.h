@@ -4,10 +4,12 @@
 #include <memory>
 #include "MMProtocol.h"
 #include "MMBaseHandler.h"
+#include "../../MMCommon/include/MMBaseData.h"
 
 class MMHandlerFactory{
 public:
     static std::shared_ptr<MMBaseHandler> createHandlerData(MMUInt32 mainCmd, MMUInt32 subCmd); 
+    static std::shared_ptr<MMBaseHandler> createHandlerData(std::shared_ptr<MMBaseData> data);
 
 private:
     MMHandlerFactory()=delete;

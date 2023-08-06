@@ -10,7 +10,7 @@ class MMBaseNetwork {
 public:
 #ifdef __linux__
     MMBaseNetwork(int sockfd=-1, int port=-1, const std::string &ip="0.0.0.0");
-    ~MMBaseNetwork();
+    virtual ~MMBaseNetwork();
 
     void setSocketfd(int socketfd) { m_socketfd=socketfd; }
     int getSocketfd() const { return m_socketfd; }

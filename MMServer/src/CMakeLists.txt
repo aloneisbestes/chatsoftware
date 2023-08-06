@@ -17,6 +17,7 @@ include_directories(
 # 调用子目录下的CMakeLists.txt
 add_subdirectory(MMNetwork)
 add_subdirectory(MMFactory)
+add_subdirectory(MMHandler)
 
 # 生成可执行文件
 # add_executable(mgraccount ${ALL_SRC} test.cpp)

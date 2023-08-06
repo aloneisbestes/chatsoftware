@@ -16,10 +16,18 @@ public:
     virtual std::shared_ptr<MMBaseData> recvData() override;
     virtual bool sendData(std::shared_ptr<MMBaseData> data) override;
 
-    void setEpollMode(int epollMode);
-    
+    // epoll相关信息
+    void setEpollMode(int epollMode) { m_epollMode=epollMode; }
+    int getEpollMode() const { return m_epollMode; }
+    void setEpollfd(int epollfd) { m_epollfd=epollfd; }
+    int getEpollfd() const { return m_epollfd; }
+
+    void addEpollOut(int sockfd, void *dataPtr);
+    void delEpollOut(int sockfd);
+
 private:
     int m_epollMode;
+    int m_epollfd;
     std::list<char> m_buffer;
 };
 

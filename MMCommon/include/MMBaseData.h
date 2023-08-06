@@ -20,7 +20,7 @@ public:
         m_createFunc=nullptr;
     }
 
-    ~MMBaseData() {}
+    virtual ~MMBaseData() {}
 
     void setMMHeader(const MM_STHeader &header)
     {

@@ -172,11 +172,11 @@ void MMNetworkServer::loop() {
                 }
 
                 // 获取处理类
-                auto handler = MMHandlerFactory::createHandlerData(handlerData->getMMHeader().mainCmd, 
-                    handlerData->getMMHeader().subCmd);
+                auto handler = MMHandlerFactory::createHandlerData(handlerData);
 
                 // 设置处理函数，并且放入线程处理
                 if (handler) {
+                    handler->setRecvSockfd(clientfd);
                     handler->setHandlerData(handlerData);
                     m_handlerThreadPool->enqueue(threadRun, handler);
                 }

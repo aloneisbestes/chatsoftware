@@ -43,6 +43,8 @@ void setListenfdReuse(int fd) {
     setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &flag, sizeof(flag));
 }
 
+#endif // 
+
 void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8 messageFormat,
                  MMUInt32 cmdState, MMUInt8 messageType, MMUInt32 dataLen, MMUInt32 check)
 {
@@ -55,5 +57,10 @@ void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8
     header.check=check;
 }
 
+int getSocketfdToClientMap(int sockfd) {
+    
+}
 
-#endif // 
+int getSessionIDToClientMap(MMInt64 sessionID) {
+    
+}

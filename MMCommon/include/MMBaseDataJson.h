@@ -21,7 +21,7 @@
 class MMBaseDataJson : public MMBaseData {
 public:
     MMBaseDataJson(MMUInt32 mainCmd=MMMainCmd_None, MMUInt32 subCmd=MMMainCmd_None);
-    ~MMBaseDataJson();
+    virtual ~MMBaseDataJson();
 
 
     void setJsonstr(const std::string &jsonstr);

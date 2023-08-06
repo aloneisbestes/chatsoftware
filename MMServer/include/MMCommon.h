@@ -2,6 +2,9 @@
 #define __MM_COMMON_H__
 
 #include "../../MMCommon/include/MMProtocol.h"
+#include <unordered_map>
+#include <memory>
+#include "../src/MMNetwork/MMNetworkClient.h"
 
 // socket结构体别名
 typedef struct sockaddr_in      MMSockaddrIn;
@@ -76,5 +79,14 @@ void setListenfdReuse(int fd);
 // 设置MM协议头
 void setMMHeader(MM_STHeader &header, MMUInt32 mainCmd, MMUInt32 subCmd, MMUInt8 messageFormat=MessageFormat_Json,
                  MMUInt32 cmdState=0, MMUInt8 messageType=MessageType_Msg, MMUInt32 dataLen=0, MMUInt32 check=MM_HEADER_CHECK);
+
+// 设备存储映射列表
+extern std::unordered_map<int, std::shared_ptr<MMNetworkClient>> __clientMap;
+
+// 获取socket是否在设备存储映射列表中
+int getSocketfdToClientMap(int sockfd);
+
+// 获取sessionID对应的sockfd
+int getSessionIDToClientMap(MMInt64 sessionID);
 
 #endif // __MM_COMMON_H__

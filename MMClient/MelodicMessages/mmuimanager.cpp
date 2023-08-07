@@ -2,6 +2,7 @@
 #include "mmloginui.h"
 #include <QApplication>
 #include "mmdistroysystem.h"
+#include "mmclient.h"
 
 MMUIManager *MMUIManager::__ins=nullptr;
 
@@ -60,6 +61,8 @@ void MMUIManager::slotLoginSuccess()
     m_loginUI->deleteLater();   // 删除登录界面
 
     // 进入界面
+    m_clientUI=new MMClient();
+    m_clientUI->show();
 }
 
 void MMUIManager::slotLoginout()
@@ -70,5 +73,15 @@ void MMUIManager::slotLoginout()
     }
 
     // 退出登录界面
+    quitApplation();
+}
+
+void MMUIManager::slotClientQuit()
+{
+    if (m_clientUI) {
+        m_clientUI->deleteLater();
+        m_clientUI=nullptr;
+    }
+
     quitApplation();
 }

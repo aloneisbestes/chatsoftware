@@ -113,5 +113,12 @@ void MMBaseDataJson::parseJsonData()
 
 void MMBaseDataJson::createJsonData()
 {
+    serializedData();
+#ifdef QT_CORE_LIB
+    QJsonDocument jsonDocument(m_jsonroot);
+    m_jsonstr=jsonDocument.toJson(QJsonDocument::Compact).toStdString();
+#else
 
+#endif // QT_CORE_LIB
+    getMMHeader().dataLen=m_jsonstr.size();
 }

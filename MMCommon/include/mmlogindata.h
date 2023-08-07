@@ -17,9 +17,7 @@ struct MMUserData
     std::string m_lastTime; // 最后登录时间
     MMUserData()
         : m_userId(-1), m_isDelete(false), m_isOnline(false)
-    {
-
-    }
+    {}
 };
 
 class MMLoginData : public MMBaseDataJson

@@ -4,6 +4,7 @@
 #include <QObject>
 
 class MMLoginUI;
+class MMClient;
 
 class MMUIManager : public QObject
 {
@@ -20,6 +21,7 @@ public:
 protected slots:
     void slotLoginSuccess();
     void slotLoginout();
+    void slotClientQuit();
 
 
 private:
@@ -28,6 +30,7 @@ private:
 private:
     explicit MMUIManager(QObject *parent = nullptr);
     MMLoginUI *m_loginUI;
+    MMClient *m_clientUI;
 };
 
 #endif // MMUIMANAGER_H

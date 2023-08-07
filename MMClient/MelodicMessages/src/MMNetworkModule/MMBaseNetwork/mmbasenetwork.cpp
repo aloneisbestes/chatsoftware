@@ -76,6 +76,7 @@ void MMBaseNetwork::handlerHeartbeat(std::shared_ptr<MMBaseData> data)
 void MMBaseNetwork::sendData(std::shared_ptr<MMBaseData> data)
 {
     auto &header=data->getMMHeader();
+    data->createData();
     qint64 sendLen=0;
     if (header.messageFormat == (MMInt8)MessageFormat_Json) { // json
         // 发送头
@@ -86,6 +87,7 @@ void MMBaseNetwork::sendData(std::shared_ptr<MMBaseData> data)
         }
         // 发送内容
         std::shared_ptr<MMBaseDataJson> dataJson = std::dynamic_pointer_cast<MMBaseDataJson>(data);
+        qDebug() << "dataJson: " << dataJson->getJsonstr().c_str();
         sendLen=m_baseSocket->write(dataJson->getJsonstr().c_str(), header.dataLen);
         if (sendLen != header.dataLen) {
             qCritical() << "send content error.";
@@ -94,7 +96,6 @@ void MMBaseNetwork::sendData(std::shared_ptr<MMBaseData> data)
         if (header.messageType != MM_ENMessageType::MessageType_Heart) {
             qDebug() << "send content success.";
         }
-
     }
     else if (header.messageFormat == (MMInt8)MessageFormat_Binary) {  // binary
 
@@ -126,7 +127,7 @@ void MMBaseNetwork::recvData()
     if (recvLen == MMSTHEADER_SIZE && header.check == MMCHECK_VERIFY) {
         while (1) {
             recvContent+=m_baseSocket->read(header.dataLen);
-            if (recvContent.size() == header.dataLen) {
+            if (recvContent.size() == (qint64)header.dataLen) {
                 break;
             }
             else {
@@ -156,7 +157,9 @@ void MMBaseNetwork::sendHeartbeat()
 
 void MMBaseNetwork::slotSendHeartbeat()
 {
+#if 0
     sendHeartbeat();
+#endif
 }
 
 void MMBaseNetwork::slotReconnectHandler()

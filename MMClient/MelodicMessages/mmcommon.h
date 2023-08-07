@@ -34,7 +34,7 @@ typedef enum tagMMTcpConnectError {
 
 
 /************************ 宏定义 Start ************************/
-#define MM_HEADER_CHECK 112233
+#define MM_HEADER_CHECK MMCHECK_VERIFY
 #define MM_DEBUG
 /************************ 宏定义 end ************************/
 

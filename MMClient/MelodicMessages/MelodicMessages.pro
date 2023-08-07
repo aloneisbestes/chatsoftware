@@ -49,7 +49,6 @@ include(src/MMGlobalModule/MMGlobalModule.pri)
 include(src/MMDataModule/MMDataModule.pri)
 include(src/MMFactoryModule/MMFactoryModule.pri)
 include($$PWD/../../MMCommon/MMCommon.pri)
-include(configuration/MMConfiguration.pri)
 
 # 去掉警告信息
 QMAKE_CXXFLAGS += -Wno-unused-parameter

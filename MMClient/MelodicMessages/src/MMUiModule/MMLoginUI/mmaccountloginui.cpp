@@ -2,6 +2,9 @@
 #include "ui_mmaccountloginui.h"
 #include "mmsystemglobal.h"
 #include "mmcommon.h"
+#include "mmdatafacotry.h"
+#include <QDebug>
+#include "mmmessagerelay.h"
 
 // 系统图标
 #define MM_SYSTEM_ICON_PATH             ":/Global/wechat_icon.png"
@@ -31,10 +34,29 @@ MMAccountLoginUI::~MMAccountLoginUI()
 
 void MMAccountLoginUI::slotAccountLogin()
 {
+    //auto loginData=MMDataFacotry::createReqMMLoingData();
+    std::shared_ptr<MMUserData> userData=std::make_shared<MMUserData>();
+    std::string tmpStr;
     // 获取用户名
+    tmpStr=ui->account->text().toStdString();
+    if (tmpStr.empty()) {
+        qDebug() << "MMAccountLoginUI::slotAccountLogin account is not exist";
+        return;
+    }
+    userData->m_account=tmpStr;
 
     // 获取密码
+    tmpStr=ui->password->text().toStdString();
+    if (tmpStr.empty()) {
+        qDebug() << "MMAccountLoginUI::slotAccountLogin password is not exist";
+        return;
+    }
+    userData->m_password=tmpStr;
 
+    auto loginData=MMDataFacotry::createReqMMLoingData(userData);
+
+    // 发送登录请求
+    emit MMMessageRelay::instance()->signalClientNetworkReq(loginData);
 }
 
 void MMAccountLoginUI::initMMAccountLoginUI()

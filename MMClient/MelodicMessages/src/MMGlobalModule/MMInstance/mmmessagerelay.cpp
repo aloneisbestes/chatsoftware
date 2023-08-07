@@ -9,10 +9,11 @@ MMMessageRelay::MMMessageRelay(QObject *parent)
 {
     m_clientTcpThread=new QThread;
     m_clientTcp=new MMClientNetwork;
+    m_clientTcp->moveToThread(m_clientTcpThread);
     connect(m_clientTcp, &MMClientNetwork::signalClientNetworkResp,
             this, &MMMessageRelay::slotHandlerClientNetworkResp);
     connect(this, &MMMessageRelay::signalConnectClientTcp, m_clientTcp, &MMClientNetwork::slotConnect);
-    m_clientTcp->moveToThread(m_clientTcpThread);
+    connect(this,&MMMessageRelay::signalClientNetworkReq, m_clientTcp,&MMClientNetwork::slotSendData);
     m_clientTcpThread->start();
 }
 

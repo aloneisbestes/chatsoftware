@@ -61,6 +61,12 @@ typedef enum _en_MMLoginCmdType
     MMLoginCmdType_Logout,	// 退出登录
 }MM_ENLoginCmdType;
 
+// 心跳子命令
+typedef enum _en_MMHeartbeatCmdType
+{
+    MMHeartbeatCmdType_None=0
+}MM_ENHeartbeatCmdType;
+
 /********************* 子命令码 End *********************/
 
 

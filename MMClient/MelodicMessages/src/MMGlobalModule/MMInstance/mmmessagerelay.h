@@ -24,6 +24,7 @@ public:
 
 signals:
     void signalConnectClientTcp(const QString &ip, int port, MM_ENTcpConnectMode connectMode);
+    void signalClientNetworkReq(std::shared_ptr<MMBaseData> data);
 
 protected slots:
     void slotHandlerClientNetworkResp(std::shared_ptr<MMBaseData> data);

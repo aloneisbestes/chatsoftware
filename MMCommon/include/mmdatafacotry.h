@@ -3,13 +3,14 @@
 
 #include "MMBaseData.h"
 #include <memory>
+#include "mmlogindata.h"
 
 class MMDataFacotry
 {
 public:
     /* 登录 */
     // 创建登录请求
-    // static QSharedPointer<MMLoginData> createReqMMLoingData(const MMLoginData &loginData);
+    static std::shared_ptr<MMLoginData> createReqMMLoingData(std::shared_ptr<MMUserData> userData);
 
     /* 心跳 */
     // 创建心跳请求

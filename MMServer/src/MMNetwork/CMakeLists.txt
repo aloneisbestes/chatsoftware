@@ -13,7 +13,8 @@ include_directories(${PROJECT_SOURCE_DIR}/src/MMBase)
 include_directories(${PROJECT_SOURCE_DIR}/src/MMNetwork)
 include_directories(${PROJECT_SOURCE_DIR}/src/MMFactory)
 set(SRC_LIST ${MMNETWORK_PATH}/MMNetworkServer.cpp ${MMBASE_PATH}/MMBaseNetwork.cpp ${MMNETWORK_PATH}/MMNetworkClient.cpp
-    ${MMDATAFACTORY_PATH}/mmdatafacotry.cpp ${MMDATAFACTORY_PATH}/MMOtherData.cpp)
+    ${MMDATAFACTORY_PATH}/mmdatafacotry.cpp ${MMDATAFACTORY_PATH}/MMOtherData.cpp ${MMDATAFACTORY_PATH}/mmlogindata.cpp
+    ${MMDATAFACTORY_PATH}/MMBaseDataJson.cpp)
 
 # 创建库文件
 add_library(MMNetwork SHARED ${SRC_LIST})

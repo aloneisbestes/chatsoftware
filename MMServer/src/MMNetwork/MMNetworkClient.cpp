@@ -71,6 +71,7 @@ std::shared_ptr<MMBaseData> MMNetworkClient::recvData() {
                         continue;
                     } else {
                         MMError("socket: %d, failed read socket fd.\n", getSocketfd());
+                        delete contentBuffer;
                         return nullptr;
                     }
                 }
@@ -79,7 +80,7 @@ std::shared_ptr<MMBaseData> MMNetworkClient::recvData() {
             } while(surplusSize > 0);
         }
         else {
-            MMPrint("No data, just the protocol header\n");
+            MMPrint("No data, just the protocol header.\n");
         }
     }
 

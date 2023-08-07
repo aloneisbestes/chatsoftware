@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <memory>
 #include "../src/MMNetwork/MMNetworkClient.h"
+#include "../../MMCommon/include/MMProtocol.h"
 
 // socket结构体别名
 typedef struct sockaddr_in      MMSockaddrIn;
@@ -71,7 +72,7 @@ bool addEpollEvent(int epollfd, int sockfd, int epollMode);
 void deleteEpollEvent(int epollfd, int sockfd);
 
 // 校验码定义
-#define MM_HEADER_CHECK     112233
+#define MM_HEADER_CHECK     MMCHECK_VERIFY
 
 // 设置socket监听套接字复用
 void setListenfdReuse(int fd);

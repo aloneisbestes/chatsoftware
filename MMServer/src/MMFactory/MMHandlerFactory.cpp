@@ -1,5 +1,6 @@
 #include "MMHandlerFactory.h"
 #include "MMCommon.h"
+#include "../MMHandler/MMLoginHandler.h"
 
 std::shared_ptr<MMBaseHandler> MMHandlerFactory::createHandlerData(MMUInt32 mainCmd, MMUInt32 subCmd) {
     MMUInt32 cmdType=MM_CommandSet(mainCmd, subCmd);
@@ -8,6 +9,11 @@ std::shared_ptr<MMBaseHandler> MMHandlerFactory::createHandlerData(MMUInt32 main
         case MM_CommandSet(MMMainCmd_Heartbeat_Req, 0):
         {
             
+        }
+        break;
+        case MM_CommandSet(MMMainCmd_Login_Req, MMLoginCmdType_Account):
+        {
+            handler=std::make_shared<MMHandlerLogin>();
         }
         break;
         default:

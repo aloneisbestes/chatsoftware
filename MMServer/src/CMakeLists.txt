@@ -26,4 +26,4 @@ add_executable(MMChat main.cpp MMCommon.cpp MMError.cpp)
 
 # 添加外部链接库
 link_directories(${PROJECT_SOURCE_DIR}/lib)
-target_link_libraries(MMChat MMNetwork MMFactory)
+target_link_libraries(MMChat MMNetwork MMFactory jsoncpp)

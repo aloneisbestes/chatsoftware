@@ -109,7 +109,8 @@ void MMNetworkServer::loop() {
                     continue;
                 }
 
-                MMPrint("ip: %s, port: %d\n", inet_ntoa(clientAddrIn.sin_addr), ntohs(clientAddrIn.sin_port));
+                MMPrint("ip: %s, port: %d, connect socket fd: %d\n", inet_ntoa(clientAddrIn.sin_addr), ntohs(clientAddrIn.sin_port),
+                    clientfd);
 
                 // 根据epoll mode设置socket模式
                 if (m_epollMode == MM_EPOLL_ET) {
@@ -139,6 +140,7 @@ void MMNetworkServer::loop() {
                 // 关闭套接字
                 MMPrint("close a connection with socket %d.\n", events[i].data.fd);
                 deleteEpollEvent(m_epollfd, events[i].data.fd);
+                close(events[i].data.fd);
             }
             else if (events[i].events & EPOLLIN || events[i].events & EPOLLET) {
                 // 数据到达
@@ -162,7 +164,7 @@ void MMNetworkServer::loop() {
                         client->second->getIp().c_str(), client->second->getPort());
                     continue;
                 }
-                MMPrint("recv from ip: %s, port: %d, read data suceess. cmd: %d %d\n",
+                MMPrint("recv from ip: %s, port: %d, read data suceess. cmd: %d:%d\n",
                     client->second->getIp().c_str(), client->second->getPort(), 
                     handlerData->getMMHeader().mainCmd, handlerData->getMMHeader().subCmd);
 

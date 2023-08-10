@@ -42,6 +42,7 @@ INCLUDEPATH += src/MMNetworkModule/MMBaseNetwork
 INCLUDEPATH += src/MMNetworkModule/MMNetwork
 INCLUDEPATH += src/MMGlobalModule/MMDistroySystem
 INCLUDEPATH += src/MMUiModule/MMButtonSet
+INCLUDEPATH += src/MMUiModule/MMMainUI
 
 
 include(src/MMUiModule/MMUiModule.pri)

@@ -15,6 +15,9 @@ public:
     explicit MMAccountLoginUI(QWidget *parent = nullptr);
     ~MMAccountLoginUI();
 
+signals:
+    void signalLoginSuccess();
+
 protected slots:
     void slotAccountLogin();
 

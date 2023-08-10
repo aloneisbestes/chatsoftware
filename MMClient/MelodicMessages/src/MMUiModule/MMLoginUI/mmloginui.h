@@ -31,6 +31,7 @@ protected:
 
 signals:
     void signalLogout();    // 退出登录页面信号
+    void signalLoginSuccess();  // 登录成功
 
 protected slots:
     void slotLoginUIChange();

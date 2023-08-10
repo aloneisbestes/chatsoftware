@@ -1,7 +1,11 @@
 #include "mmdatafacotry.h"
 #include "MMOtherData.h"
 #include "mmlogindata.h"
+#ifdef QT_CORE_LIB
 #include "mmcommon.h"
+#else 
+#include "../../MMServer/include/MMCommon.h"
+#endif 
 
 std::shared_ptr<MMBaseData> MMDataFacotry::createRequest(MMUInt32 mainCmd, MMUInt32 subCmd)
 {

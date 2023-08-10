@@ -2,7 +2,6 @@
 #include "mmsystemglobal.h"
 #include "mmcommon.h"
 #include "mmuimanager.h"
-#include "mmlogindata.h"
 
 int main(int argc, char *argv[])
 {

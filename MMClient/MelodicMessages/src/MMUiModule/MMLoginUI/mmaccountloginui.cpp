@@ -57,6 +57,7 @@ void MMAccountLoginUI::slotAccountLogin()
 
     // 发送登录请求
     emit MMMessageRelay::instance()->signalClientNetworkReq(loginData);
+    emit signalLoginSuccess();
 }
 
 void MMAccountLoginUI::initMMAccountLoginUI()

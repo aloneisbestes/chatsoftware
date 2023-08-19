@@ -4,8 +4,8 @@
 #include "mmsystemglobal.h"
 #include <QMouseEvent>
 
-static QString __qrcodeIcon=":/Global/QRcode_icon.png";
-static QString __accountIcon=":/Global/account_icon.png";
+static const char *__qrcodeIcon=":/Global/QRcode_icon.png";
+static const char *__accountIcon=":/Global/account_icon.png";
 
 MMLoginUI::MMLoginUI(QWidget *parent) :
     QWidget(parent),
@@ -141,4 +141,5 @@ void MMLoginUI::initEventHandle()
 {
     connect(ui->btn_close, &QPushButton::clicked, this, &MMLoginUI::signalLogout);
     connect(ui->btnQRCode, &QToolButton::clicked, this, &MMLoginUI::slotLoginUIChange);
+    connect(ui->account_login,&MMAccountLoginUI::signalLoginSuccess, this, &MMLoginUI::signalLoginSuccess);
 }

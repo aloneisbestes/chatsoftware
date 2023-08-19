@@ -1,8 +1,9 @@
 #include "mmuimanager.h"
 #include "mmloginui.h"
-#include <QApplication>
 #include "mmdistroysystem.h"
 #include "mmclient.h"
+#include <QApplication>
+#include <QDebug>
 
 MMUIManager *MMUIManager::__ins=nullptr;
 
@@ -38,6 +39,7 @@ void MMUIManager::toLogin()
     if (m_loginUI == nullptr) {
         m_loginUI=new MMLoginUI();
         connect(m_loginUI, &MMLoginUI::signalLogout, this, &MMUIManager::slotLoginout);
+        connect(m_loginUI, &MMLoginUI::signalLoginSuccess, this, &MMUIManager::slotLoginSuccess);
     }
     m_loginUI->show();
 }
@@ -57,6 +59,7 @@ void MMUIManager::quitApplation()
 
 void MMUIManager::slotLoginSuccess()
 {
+    qDebug() << "login success";
     // 登录成功显示界面
     m_loginUI->deleteLater();   // 删除登录界面
 

@@ -93,6 +93,27 @@ std::shared_ptr<MMBaseData> MMNetworkClient::recvData() {
 }
 
 bool MMNetworkClient::sendData(std::shared_ptr<MMBaseData> data) {
+    if (data == nullptr) {
+        MMError("send data is nullptr.\n");
+        return false;
+    }
+
+    int sendSize=0;
+    auto &header=data->getMMHeader();
+    sendSize=MMBaseNetwork::sendData(reinterpret_cast<char*>(&header), MMSTHEADER_SIZE);
+    if (sendSize != MMSTHEADER_SIZE) {
+        MMError("the sending header information is incorrect.\n");
+        return false;
+    }
+
+    if (header.dataLen != 0) {
+        sendSize=MMBaseNetwork::sendData(data->getConstData(), header.dataLen);
+        if (sendSize != header.dataLen) {
+            MMError("sending message content error.\n");
+            return false;
+        }
+    }
+
     return true;
 }
 

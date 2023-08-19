@@ -115,7 +115,7 @@ void MMNetworkServer::loop() {
                 // 根据epoll mode设置socket模式
                 if (m_epollMode == MM_EPOLL_ET) {
                     if (setnonblocking(clientfd) == false) {
-                        MMPrint("failed to set a non-blocking socket setting.\n");
+                        MMError("failed to set a non-blocking socket setting.\n");
                     } 
                 } 
 
@@ -132,9 +132,11 @@ void MMNetworkServer::loop() {
                 }
 
                 // 添加该客服端对象
-                std::shared_ptr<MMNetworkClient> cleintSharedPtr(
+                std::shared_ptr<MMNetworkClient> clientSharedPtr(
                     new MMNetworkClient(clientfd, ntohs(clientAddrIn.sin_port), inet_ntoa(clientAddrIn.sin_addr)));
-                __clientMap[clientfd]=cleintSharedPtr;
+                clientSharedPtr->setEpollfd(m_epollfd);
+                clientSharedPtr->setEpollMode(m_epollMode);
+                __clientMap[clientfd]=clientSharedPtr;
             } 
             else if ((events[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR))) {
                 // 关闭套接字
@@ -178,13 +180,36 @@ void MMNetworkServer::loop() {
 
                 // 设置处理函数，并且放入线程处理
                 if (handler) {
-                    handler->setRecvSockfd(clientfd);
+                    handler->setSrcSockfd(clientfd);
                     handler->setHandlerData(handlerData);
                     m_handlerThreadPool->enqueue(threadRun, handler);
                 }
                 else {
                     MMPrint("handler class is nullptr.\n");
                 } 
+            }
+            else if (events[i].events & EPOLLOUT) {
+                // 获取发送的处理类
+                if (events[i].data.ptr == nullptr) {
+                    MMPrint("handler data is empty.\n");
+                    continue;
+                }
+                MMBaseHandler *handler=reinterpret_cast<MMBaseHandler*>(events[i].data.ptr);
+                int sockfd=handler->getDestSockfd();
+
+                if (__clientMap.find(sockfd) == __clientMap.end()) {
+                    MMError("this device does not exist and cannot be sent.\n");
+                    continue;
+                }
+
+                auto handlerClient=__clientMap[sockfd];
+                if (handlerClient->sendData(handler->getHandlerData())) {
+                    MMPrint("send to ip: %s, port: %d data is success.\n", handlerClient->getIp().c_str(), 
+                        handlerClient->getPort());
+                }
+            }
+            else {
+                MMError("epoll events is not find.\n");
             }
         }
     }

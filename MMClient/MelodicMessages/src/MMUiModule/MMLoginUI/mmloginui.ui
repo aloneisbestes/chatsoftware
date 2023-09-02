@@ -19,7 +19,7 @@
      <property name="styleSheet">
       <string notr="true">QWidget#widget
 {
-	background-color: #F2F5FC;
+	background-color: #e6e6eb;
 	border-radius: 8px;
 }</string>
      </property>

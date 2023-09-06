@@ -21,7 +21,7 @@ MMBaseNetwork::~MMBaseNetwork()
     if (m_sendHeartBeatTimer) m_sendHeartBeatTimer->deleteLater();
 }
 
-void MMBaseNetwork::slotSendData(std::shared_ptr<MMBaseData> data)
+void MMBaseNetwork::slotSendData(QSharedPointer<MMBaseData> data)
 {
     sendData(data);
 }
@@ -68,12 +68,12 @@ void MMBaseNetwork::slotReconnect()
     }
 }
 
-void MMBaseNetwork::handlerHeartbeat(std::shared_ptr<MMBaseData> data)
+void MMBaseNetwork::handlerHeartbeat(QSharedPointer<MMBaseData> data)
 {
     Q_UNUSED(data)
 }
 
-void MMBaseNetwork::sendData(std::shared_ptr<MMBaseData> data)
+void MMBaseNetwork::sendData(QSharedPointer<MMBaseData> data)
 {
     auto &header=data->getMMHeader();
     data->createData();
@@ -86,7 +86,7 @@ void MMBaseNetwork::sendData(std::shared_ptr<MMBaseData> data)
             return;
         }
         // 发送内容
-        std::shared_ptr<MMBaseDataJson> dataJson = std::dynamic_pointer_cast<MMBaseDataJson>(data);
+        QSharedPointer<MMBaseDataJson> dataJson =qSharedPointerDynamicCast<MMBaseDataJson>(data);
         qDebug() << "dataJson: " << dataJson->getJsonstr().c_str();
         sendLen=m_baseSocket->write(dataJson->getJsonstr().c_str(), header.dataLen);
         if (sendLen != header.dataLen) {
@@ -122,7 +122,7 @@ void MMBaseNetwork::recvData()
     MM_STHeader header;
     qint64 recvLen=0;
     QByteArray recvContent;
-    std::shared_ptr<MMBaseData> resp=nullptr;
+    QSharedPointer<MMBaseData> resp=nullptr;
     recvLen=m_baseSocket->read(reinterpret_cast<char*>(&header), MMSTHEADER_SIZE);
     if (recvLen == MMSTHEADER_SIZE && header.check == MMCHECK_VERIFY) {
         while (1) {
@@ -151,7 +151,7 @@ void MMBaseNetwork::recvData()
 void MMBaseNetwork::sendHeartbeat()
 {
     // 发送心跳包
-    std::shared_ptr<MMBaseData> heartbeat=MMDataFacotry::createHeartbeat();
+    QSharedPointer<MMBaseData> heartbeat=MMDataFacotry::createHeartbeat();
     slotSendData(heartbeat);
 }
 

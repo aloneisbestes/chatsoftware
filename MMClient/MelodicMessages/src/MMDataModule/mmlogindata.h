@@ -27,10 +27,10 @@ public:
     ~MMLoginData();
 
     // 获取和设置用户
-    void setMMUserData(std::shared_ptr<MMUserData> userData) { m_userData= userData; }
-    std::shared_ptr<MMUserData> getMMUserData() const { return m_userData; }
+    void setMMUserData(const MMUserData &userData) { m_userData= userData; }
+    const MMUserData& getMMUserData() const { return m_userData; }
     // 获取用户数据的const引用
-    const MMUserData &getMMUserData_cite() const { return *m_userData.get(); }
+    MMUserData &getMMUserData_cite() { return m_userData; }
 
 protected:
     // 将子类对象序列化为json数据
@@ -40,7 +40,7 @@ protected:
     virtual void deserializedData()override;
 
 private:
-    std::shared_ptr<MMUserData> m_userData;
+    MMUserData m_userData;
 };
 
 #endif // MMLOGINDATA_H

@@ -21,8 +21,8 @@ void MMLoginData::serializedData()
         case MM_CommandSet(MMMainCmd_Login_Req, MMLoginCmdType_Account):
         {
             // 用户名密码登录
-            jsonRoot["account"]=m_userData->m_account.c_str();
-            jsonRoot["password"]=m_userData->m_password.c_str();
+            jsonRoot["account"]=m_userData.m_account.c_str();
+            jsonRoot["password"]=m_userData.m_password.c_str();
         }
         break;
         case MM_CommandSet(MMMainCmd_Login_Req, MMLoginCmdType_QRCode):

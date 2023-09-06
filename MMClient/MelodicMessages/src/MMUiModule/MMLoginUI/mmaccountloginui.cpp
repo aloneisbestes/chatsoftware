@@ -35,7 +35,7 @@ MMAccountLoginUI::~MMAccountLoginUI()
 void MMAccountLoginUI::slotAccountLogin()
 {
     //auto loginData=MMDataFacotry::createReqMMLoingData();
-    std::shared_ptr<MMUserData> userData=std::make_shared<MMUserData>();
+    MMUserData userData;
     std::string tmpStr;
     // 获取用户名
     tmpStr=ui->account->text().toStdString();
@@ -43,7 +43,7 @@ void MMAccountLoginUI::slotAccountLogin()
         qDebug() << "MMAccountLoginUI::slotAccountLogin account is not exist";
         return;
     }
-    userData->m_account=tmpStr;
+    userData.m_account=tmpStr;
 
     // 获取密码
     tmpStr=ui->password->text().toStdString();
@@ -51,7 +51,7 @@ void MMAccountLoginUI::slotAccountLogin()
         qDebug() << "MMAccountLoginUI::slotAccountLogin password is not exist";
         return;
     }
-    userData->m_password=tmpStr;
+    userData.m_password=tmpStr;
 
     auto loginData=MMDataFacotry::createReqMMLoingData(userData);
 

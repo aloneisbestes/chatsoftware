@@ -11,7 +11,7 @@ MMClientNetwork::~MMClientNetwork()
 
 }
 
-void MMClientNetwork::messageRelay(std::shared_ptr<MMBaseData> data)
+void MMClientNetwork::messageRelay(QSharedPointer<MMBaseData> data)
 {
     MM_STHeader header=data->getMMHeader();
 

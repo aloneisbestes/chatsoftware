@@ -18,7 +18,7 @@ public:
     ~MMBaseNetwork();
 
 public slots:
-    void slotSendData(std::shared_ptr<MMBaseData> data);
+    void slotSendData(QSharedPointer<MMBaseData> data);
     void slotRecvData();
     void slotConnect(const QString &ip, int port, MM_ENTcpConnectMode connectMode=MM_ENTcpConnectMode::MMTcpConnectMode_Create);   //0: 表示创建连接，1: 表示切换连接
     void slotReconnect();   // 断线重连
@@ -30,20 +30,20 @@ public:
     void setConnectPort(int port) { m_port=port; }
     int getConnectPort() const { return m_port; }
 
-    void handlerHeartbeat(std::shared_ptr<MMBaseData> data);
+    void handlerHeartbeat(QSharedPointer<MMBaseData> data);
 
 protected:
-    virtual void sendData(std::shared_ptr<MMBaseData> data);
+    virtual void sendData(QSharedPointer<MMBaseData> data);
     virtual void recvData();
     virtual void sendHeartbeat();
-    virtual void messageRelay(std::shared_ptr<MMBaseData> data)=0;
+    virtual void messageRelay(QSharedPointer<MMBaseData> data)=0;
 
 protected slots:
     void slotSendHeartbeat();
     void slotReconnectHandler();
 
 signals:
-    void signalRecvData(std::shared_ptr<MMBaseData> data);
+    void signalRecvData(QSharedPointer<MMBaseData> data);
     void signalTcpConnectStatus(MM_ENTcpConnectError error);
 
 private:

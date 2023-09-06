@@ -41,7 +41,7 @@ void MMMessageRelay::disInstance()
     MMMessageRelay::__ins=nullptr;
 }
 
-void MMMessageRelay::slotHandlerClientNetworkResp(std::shared_ptr<MMBaseData> data)
+void MMMessageRelay::slotHandlerClientNetworkResp(QSharedPointer<MMBaseData> data)
 {
 
 }

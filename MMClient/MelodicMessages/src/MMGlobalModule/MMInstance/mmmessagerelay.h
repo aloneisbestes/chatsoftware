@@ -24,10 +24,10 @@ public:
 
 signals:
     void signalConnectClientTcp(const QString &ip, int port, MM_ENTcpConnectMode connectMode);
-    void signalClientNetworkReq(std::shared_ptr<MMBaseData> data);
+    void signalClientNetworkReq(QSharedPointer<MMBaseData> data);
 
 protected slots:
-    void slotHandlerClientNetworkResp(std::shared_ptr<MMBaseData> data);
+    void slotHandlerClientNetworkResp(QSharedPointer<MMBaseData> data);
 
 private:
     static MMMessageRelay *__ins;

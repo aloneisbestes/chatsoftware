@@ -16,7 +16,7 @@ void MMLoginData::serializedData()
 {
     auto &header=getMMHeader();
     MMUInt32 cmdType=MM_CommandSet(header.mainCmd, header.subCmd);
-    MMJson jsonRoot;
+    QJsonObject jsonRoot;
     switch (cmdType) {
         case MM_CommandSet(MMMainCmd_Login_Req, MMLoginCmdType_Account):
         {

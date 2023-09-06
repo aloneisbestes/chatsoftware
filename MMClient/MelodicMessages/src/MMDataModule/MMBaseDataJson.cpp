@@ -29,12 +29,12 @@ const std::string &MMBaseDataJson::getJsonstr() const
     return m_jsonstr;
 }
 
-void MMBaseDataJson::setJsonroot(const MMJson &jsonroot)
+void MMBaseDataJson::setJsonroot(const QJsonObject &jsonroot)
 {
     m_jsonroot=jsonroot;
 }
 
-const MMJson &MMBaseDataJson::getJsonroot() const
+const QJsonObject &MMBaseDataJson::getJsonroot() const
 {
     return m_jsonroot;
 }
@@ -56,26 +56,18 @@ char *MMBaseDataJson::getData()
     return nullptr;
 }
 
-
-#ifdef QT_CORE_LIB
-QByteArray MMBaseDataJson::createJson(MMJson &jsonroot)
+QByteArray MMBaseDataJson::createJson(QJsonObject &jsonroot)
 {
     //QJsonParseError jsonError;
     //QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonroot.toUtf8(), &jsonError);
     // Q_UNUSED(jsonroot);
     return jsonroot["abc"].toString().toStdString().c_str();
 }
-#else
-std::string MMBaseDataJson::createJson(MMJson &jsonroot) {
-    return "";
-}
-#endif
 
 
-MMJson MMBaseDataJson::parseJson(const char *jsonstr, bool &isSuccess)
+QJsonObject MMBaseDataJson::parseJson(const char *jsonstr, bool &isSuccess)
 {
-    MMJson root;
-#ifdef QT_CORE_LIB
+    QJsonObject root;
     QJsonParseError jsonError;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonstr, &jsonError);
 
@@ -84,11 +76,9 @@ MMJson MMBaseDataJson::parseJson(const char *jsonstr, bool &isSuccess)
         isSuccess=true;
     }
     else {
-        MMAssert(jsonError.error == QJsonParseError::NoError);
+        Q_ASSERT(jsonError.error == QJsonParseError::NoError);
         isSuccess=false;
     }
-#else
-#endif // QT_CORE_LIB
 
     return root;
 }
@@ -106,7 +96,7 @@ void MMBaseDataJson::parseJsonData()
             deserializedData();
         }
         else {
-            MMAssert(m_isParseSuccess==true);
+            Q_ASSERT(m_isParseSuccess==true);
         }
     }
 }

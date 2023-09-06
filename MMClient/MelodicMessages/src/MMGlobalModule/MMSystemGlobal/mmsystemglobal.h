@@ -37,7 +37,7 @@ public:
 
 private:
     QByteArray m_sConfigJson;   // 配置内容
-    MMJson m_configRoot;
+    QJsonObject m_configRoot;
     QString m_sLogPath;     // log日志文件路径
     QString m_sLogName;     // log日志文件名
     QString m_sConfigName;  // 配置文件名
